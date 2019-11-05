@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#200E34</color>
+    <color name="colorPrimaryDark">#140920</color>
+    <color name="colorAccent">#F9AE31</color>
+    <color name="linestart">#C28631</color>
+    <color name="ripple">#A3E7F4</color>
+    <color name="textcolor">#FFFFFF</color>
+    <color name="background">#200E34</color>
+</resources>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_backgroundhome"
+    tools:context=".view.activity.ProfileActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/trashhandfont"
+        android:text="@string/profile"
+        android:textColor="@color/textcolor"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgProfile_Profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/edtEmail_Profile"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="email"
+        android:hint="@string/email"
+        android:textColorHint="@color/textcolor"
+        android:fontFamily="@font/trashhandfont"
+        android:textSize="20sp"
+        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/btn_start"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/textcolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile_Profile" />
+
+    <EditText
+        android:id="@+id/edtPassword_Profile"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="email"
+        android:hint="@string/password"
+        android:textColorHint="@color/textcolor"
+        android:fontFamily="@font/trashhandfont"
+        android:textSize="20sp"
+        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/btn_start"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/textcolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumber_Profile" />
+
+    <EditText
+        android:id="@+id/edtNumber_Profile"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="Phone"
+        android:hint="@string/phone"
+        android:textColorHint="@color/textcolor"
+        android:fontFamily="@font/trashhandfont"
+        android:textSize="20sp"
+        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/btn_start"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/textcolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail_Profile" />
+
+    <Button
+        android:id="@+id/btnSaveUpdate_Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_start_sold_raduis"
+        android:text="@string/update"
+        android:textColor="@color/textcolor"
+        android:textColorHint="@color/ripple"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/edtPassword_Profile"
+        app:layout_constraintStart_toStartOf="@+id/edtPassword_Profile"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword_Profile" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="117dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

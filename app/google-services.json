@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "450497060749",
+    "firebase_url": "https://deer-sms.firebaseio.com",
+    "project_id": "deer-sms",
+    "storage_bucket": "deer-sms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450497060749:android:36621685f56f184a4227c4",
+        "android_client_info": {
+          "package_name": "com.alialfayed.deersms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450497060749-djck37jbrt2uop3q86nip4ai2ljb4ms0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alialfayed.deersms",
+            "certificate_hash": "ad1e980dcedb3467bc0577fc2e7175d9205d22a3"
+          }
+        },
+        {
+          "client_id": "450497060749-eqt62q504auc5ihaqjj5gcb92tk3j1v4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alialfayed.deersms",
+            "certificate_hash": "8aa7f7c4442e5ae46cb3014823859f3d6d450892"
+          }
+        },
+        {
+          "client_id": "450497060749-8ap493955akaibet81hue0ppa02mihb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa27eP3DfVBk7RbWEZ3hYe-gKKqCDQqNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450497060749-8ap493955akaibet81hue0ppa02mihb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
