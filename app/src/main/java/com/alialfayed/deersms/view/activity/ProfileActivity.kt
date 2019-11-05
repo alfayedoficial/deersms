@@ -10,11 +10,11 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        initComponent()
+//        initComponent()
 
     }
 
-    private fun initComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun initComponent() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 }

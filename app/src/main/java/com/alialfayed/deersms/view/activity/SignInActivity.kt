@@ -3,6 +3,7 @@ package com.alialfayed.deersms.view.activity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.alialfayed.deersms.R
@@ -20,8 +21,13 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         signInViewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
         signInViewModel.setSignInActivity(this)
 
+//        btnSignIn_SignIn.setOnClickListener {
+//            val email = edtEmail_SignIn.text.toString().trim()
+//            val password = edtPassword_SignIn.text.toString().trim()
+//            signInViewModel.signInCheck(email, password)
+////            Toast.makeText(applicationContext,"test done",Toast.LENGTH_LONG).show()
+//        }
         initComponent()
-
 
     }
 
@@ -29,18 +35,19 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         btnSignIn_SignIn.setOnClickListener(this)
         btnGoogle_SignIn.setOnClickListener(this)
         btnForgetPassword_SignIn.setOnClickListener(this)
-        btnCreateAnAccount_SignIn.setOnClickListener(this) }
+        btnCreateAnAccount_SignIn.setOnClickListener(this)
+    }
 
     /**
      * method check by Ids
      */
     override fun onClick(view: View?) {
-        var email = edtEmail_SignIn.text.toString()
-        var password = edtPassword_SignIn.text.toString()
+        var email = edtEmail_SignIn.text.toString().trim()
+        var password = edtPassword_SignIn.text.toString().trim()
 
         when (view?.id) {
             R.id.btnSignIn_SignIn -> {
-                if (!TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
+                if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
                     signInViewModel.signInCheck(email, password)
                 }
             }
@@ -68,6 +75,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             progressBar_SignIn.setVisibility(View.GONE)
         }
     }
+
+
 
 
 }

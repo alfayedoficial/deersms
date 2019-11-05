@@ -46,9 +46,10 @@ class FirebaseHandler(activity: Activity) {
             OnCompleteListener {
                 if (it.isSuccessful) {
                     Log.i("signUp", "Success " + email)
-                    signUpViewModel?.start()
+                    signUpViewModel?.SignUpSuccessful()
                 } else {
                     Log.i("signUp", "Failed")
+                    signUpViewModel?.SignUpfailed()
                 }
             })
     }
@@ -57,9 +58,10 @@ class FirebaseHandler(activity: Activity) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(OnCompleteListener {
             if (it.isSuccessful) {
                 Log.i("signIn", "Success" + email)
-                signInViewModel?.startHome()
+                signInViewModel?.SignInSuccessful()
             } else {
                 Log.i("signIn", "Fail")
+                signInViewModel?.SignInfailed()
             }
         })
     }

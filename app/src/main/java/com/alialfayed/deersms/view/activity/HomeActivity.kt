@@ -39,13 +39,13 @@ class HomeActivity : AppCompatActivity() {
         //floatingActionButton
         floatingActions()
 
-        initComponent()
+//        initComponent()
 
     }
 
-    private fun initComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun initComponent() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 
 
     //setting menu in action bar

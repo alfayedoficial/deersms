@@ -10,11 +10,11 @@ class GroupNameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_name)
 
-        initComponent()
+//        initComponent()
 
     }
 
-    private fun initComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun initComponent() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 }

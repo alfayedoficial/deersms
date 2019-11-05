@@ -9,11 +9,11 @@ class AddMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_message)
-        initComponent()
+//        initComponent()
 
     }
 
-    private fun initComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun initComponent() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 }

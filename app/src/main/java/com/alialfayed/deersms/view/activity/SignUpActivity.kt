@@ -3,6 +3,7 @@ package com.alialfayed.deersms.view.activity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.alialfayed.deersms.R
@@ -23,6 +24,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
         initComponent()
 
+
     }
 
     private fun initComponent() {
@@ -32,16 +34,13 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        var email = edtEmail_SignUp.text.toString()
-        var password = edtPassword_SignUp.text.toString()
-        var confirmPassword = edtCofirmPassword_SignUp.text.toString()
+        var email = edtEmail_SignUp.text.toString().trim()
+        var password = edtPassword_SignUp.text.toString().trim()
+        var confirmPassword = edtCofirmPassword_SignUp.text.toString().trim()
 
         when (view?.id) {
             R.id.btnSignUp_SignUp -> {
-                if (!TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && TextUtils.isEmpty(
-                        confirmPassword
-                    )
-                ) {
+                if (!email.isNullOrEmpty() && !password.isNullOrEmpty() && !confirmPassword.isNullOrEmpty()) {
                     if (password.equals(confirmPassword)) {
                         signUpViewModel.signUpCheck(email, password)
                     } else {
@@ -65,6 +64,16 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             }
 
         }
+    }
+
+    fun disableLayout(status: Boolean) {
+        edtEmail_SignUp.setEnabled(status)
+        edtPassword_SignUp.setEnabled(status)
+        edtCofirmPassword_SignUp.setEnabled(status)
+        btnSignUp_SignUp.setEnabled(status)
+        btn_Terms_And_Conditions.setEnabled(status)
+        btn_Privacy_Policy.setEnabled(status)
+
     }
 
 }

@@ -31,13 +31,13 @@ class GroupContactsActivity : AppCompatActivity() {
         setupViewPager(tabViewpager_GroupsContacts)
         tabs_GroupContacts!!.setupWithViewPager(tabViewpager_GroupsContacts)
 
-        initComponent()
+//        initComponent()
 
     }
 
-    private fun initComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun initComponent() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = GroupContactsAdabter(supportFragmentManager)
