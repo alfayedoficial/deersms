@@ -2,6 +2,7 @@ package com.alialfayed.deersms.repo
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import com.alialfayed.deersms.viewmodel.SignInViewModel
 import com.alialfayed.deersms.viewmodel.SignUpViewModel
 import com.google.android.gms.tasks.OnCompleteListener
@@ -58,9 +59,12 @@ class FirebaseHandler(activity: Activity) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(OnCompleteListener {
             if (it.isSuccessful) {
                 Log.i("signIn", "Success" + email)
+                Toast.makeText(activity, " Success " + email, Toast.LENGTH_LONG).show()
                 signInViewModel?.SignInSuccessful()
+
             } else {
                 Log.i("signIn", "Fail")
+                Toast.makeText(activity, " Failed " + email, Toast.LENGTH_LONG).show()
                 signInViewModel?.SignInfailed()
             }
         })

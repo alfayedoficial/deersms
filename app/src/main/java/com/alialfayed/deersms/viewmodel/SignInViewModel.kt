@@ -36,7 +36,6 @@ class SignInViewModel : ViewModel() {
         if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
             signInActivity.disableLayout(false)
             firebaseHandler?.signIn(email, password)
-            Toast.makeText(activity, "test done", Toast.LENGTH_LONG).show()
         } else {
             FancyToast.makeText(
                 activity,
@@ -55,7 +54,7 @@ class SignInViewModel : ViewModel() {
     fun SignInSuccessful() {
         val start = Intent(activity, HomeActivity::class.java)
         activity.startActivity(start)
-        activity.finish()
+//        activity.finish()
 
     }
 

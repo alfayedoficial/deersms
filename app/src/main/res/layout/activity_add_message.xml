@@ -35,19 +35,18 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:autofillHints="number"
-        android:textSize="20sp"
-        android:fontFamily="@font/trashhandfont"
         android:background="@drawable/btn_start"
-        android:drawableEnd="@drawable/ic_phone_book"
         android:ems="10"
+        android:fontFamily="@font/trashhandfont"
         android:hint="@string/choose_number"
-        android:inputType="textEmailAddress"
-        android:paddingRight="10dp"
+        android:inputType="none|phone"
         android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingEnd="10dp"
+        android:paddingRight="10dp"
         android:textColor="@color/textcolor"
         android:textColorHint="@color/textcolor"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -114,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
         app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -150,13 +149,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:fontFamily="@font/trashhandfont"
+        android:textColor="@color/textcolor"
+        android:textSize="20sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8"
-        tools:text="@string/time"
-        android:fontFamily="@font/trashhandfont"
-        android:textColor="@color/textcolor"
-        android:textSize="20sp"/>
+        tools:text="@string/time" />
 
     <ImageButton
         android:id="@+id/imageBtnSend_AddMessage"
@@ -206,6 +206,28 @@
             android:paddingRight="10dp" />
 
     </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/imageBtnContacts_AddMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/edtNumber_AddMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtNumber_AddMessage"
+        app:layout_constraintTop_toTopOf="@+id/edtNumber_AddMessage"
+        app:srcCompat="@drawable/ic_phone_book" />
+
+    <ImageButton
+        android:id="@+id/imageBtnAttach_AddMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintTop_toTopOf="@+id/edtMessage_AddMessage"
+        app:srcCompat="@drawable/ic_attachment" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

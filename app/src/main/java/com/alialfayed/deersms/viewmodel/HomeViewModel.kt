@@ -4,10 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.alialfayed.deersms.repo.Repository
-import com.alialfayed.deersms.view.activity.AddGroupActivity
-import com.alialfayed.deersms.view.activity.AddMessageActivity
-import com.alialfayed.deersms.view.activity.GroupContactsActivity
-import com.alialfayed.deersms.view.activity.SettingsActivity
+import com.alialfayed.deersms.view.activity.*
 
 
 /**
@@ -38,6 +35,10 @@ class HomeViewModel(val homeActivity: Activity) : ViewModel() {
      */
     fun groupContacts(){
         val intent = Intent(homeActivity,GroupContactsActivity::class.java)
+        homeActivity.startActivity(intent)
+    }
+    fun contacts(){
+        val intent = Intent(homeActivity,ContactsActivity::class.java)
         homeActivity.startActivity(intent)
     }
 

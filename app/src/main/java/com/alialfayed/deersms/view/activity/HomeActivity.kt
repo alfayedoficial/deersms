@@ -84,7 +84,8 @@ class HomeActivity : AppCompatActivity() {
             when (index) {
                 0 -> { homeViewModel.addMessage() }
                 1 -> { homeViewModel.addGroups() }
-                2 -> { homeViewModel.groupContacts() }
+//                2 -> { homeViewModel.groupContacts() }
+                2 -> { homeViewModel.contacts() }
                 3 -> { homeViewModel.settings() }
             }
         }

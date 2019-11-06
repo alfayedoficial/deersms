@@ -68,6 +68,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:autofillHints=""
         android:background="@drawable/btn_start"
         android:ems="10"
@@ -80,6 +81,7 @@
         android:textColor="@color/textcolor"
         android:textColorHint="@color/textcolor"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnSignUp_SignUp"
         app:layout_constraintStart_toStartOf="@+id/edtEmail_SignUp"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword_SignUp"
         tools:targetApi="o" />
@@ -87,19 +89,16 @@
 
     <Button
         android:id="@+id/btnSignUp_SignUp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:background="@drawable/btn_startsolid"
         android:elevation="20dp"
         android:fontFamily="@font/trashhandfont"
         android:text="@string/sign_up"
         android:textColor="@color/textcolor"
         android:textColorHint="@color/ripple"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/edtPassword_SignUp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/edtCofirmPassword_SignUp"
         app:layout_constraintTop_toTopOf="@+id/edtCofirmPassword_SignUp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -149,10 +148,10 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/trashhandfont"
                 android:text="@string/and"

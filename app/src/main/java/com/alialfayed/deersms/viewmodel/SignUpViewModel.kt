@@ -27,7 +27,7 @@ class SignUpViewModel:ViewModel() {
 
     fun signUpCheck(email:String,password:String){
         if(!email.isNullOrEmpty() && !password.isNullOrEmpty()){
-            Toast.makeText(activity, "test done", Toast.LENGTH_LONG).show()
+//            Toast.makeText(activity, "test done", Toast.LENGTH_LONG).show()
             signUpActivity.disableLayout(false)
             firebaseHandler?.signUp(email, password)
         }
