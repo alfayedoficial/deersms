@@ -9,6 +9,7 @@ import android.os.Handler
 import android.webkit.PermissionRequest
 import androidx.core.app.ActivityCompat
 import com.alialfayed.deersms.R
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,9 +18,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-
-
         durationOfWait()
     }
 
@@ -27,10 +25,14 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             /* Create an Intent that will start the Menu-Activity. */
             val mainIntent = Intent(this, StartActivity::class.java)
-            startActivity(mainIntent)
+            val userInternt =Intent(this ,HomeActivity::class.java)
+            startActivity(
+                if(FirebaseAuth.getInstance().currentUser == null){mainIntent}else{userInternt}
+            )
             this.finish()
         }, SPLASH_DISPLAY_LENGTH.toLong())
     }
+
 
 
 }

@@ -60,10 +60,7 @@ class HomeActivity : AppCompatActivity() {
         // select item
         when (id) {
             R.id.profile_Menu -> {
-                Toast.makeText(this, "profile", Toast.LENGTH_LONG).show()
-            }
-            R.id.group_Menu -> {
-                Toast.makeText(this, "groups", Toast.LENGTH_LONG).show()
+                homeViewModel.profileActivity()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -84,8 +81,8 @@ class HomeActivity : AppCompatActivity() {
             when (index) {
                 0 -> { homeViewModel.addMessage() }
                 1 -> { homeViewModel.addGroups() }
-//                2 -> { homeViewModel.groupContacts() }
-                2 -> { homeViewModel.contacts() }
+                2 -> { homeViewModel.groupContacts() }
+//                2 -> { homeViewModel.contacts() }
                 3 -> { homeViewModel.settings() }
             }
         }
@@ -97,6 +94,10 @@ class HomeActivity : AppCompatActivity() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return HomeViewModel(mActivity) as T
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
 }

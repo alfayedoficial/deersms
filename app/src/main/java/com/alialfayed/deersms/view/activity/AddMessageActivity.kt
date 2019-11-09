@@ -21,6 +21,7 @@ class AddMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.alialfayed.deersms.R.layout.activity_add_message)
 
+
         val numberText = edtNumber_AddMessage.text.toString().trim()
         val messageText = edtMessage_AddMessage.text.toString().trim()
 
@@ -28,6 +29,18 @@ class AddMessageActivity : AppCompatActivity() {
         addMessageViewModel = ViewModelProviders.of(this).get(AddMessageViewModel::class.java)
         addMessageViewModel.setAddMessage(this)
 
+       if (intent.getStringExtra("result1") != null){
+           var textTemplate :String =intent.getStringExtra("result1")
+           edtMessage_AddMessage.setText(textTemplate)
+       }
+        if (intent.getStringExtra("result2") != null){
+            var textPhone :String =intent.getStringExtra("result2")
+            edtNumber_AddMessage.setText(textPhone)
+        }
+
+        /**
+         * button do send message
+         */
         imageBtnSend_AddMessage.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
                     this,
@@ -50,15 +63,19 @@ class AddMessageActivity : AppCompatActivity() {
                     requestReadState
                 )
             } else {
-                addMessageViewModel.sendSMS()
+                addMessageViewModel.sendSMS(numberText,messageText)
             }
 
         }
-
+        /**
+         * button get contacts
+         */
         imageBtnContacts_AddMessage.setOnClickListener {
             addMessageViewModel.contacts()
         }
-
+        /**
+         * button get template message
+         */
         imageBtnAttach_AddMessage.setOnClickListener {
             addMessageViewModel.template()
         }
@@ -73,7 +90,7 @@ class AddMessageActivity : AppCompatActivity() {
         val numberText = edtNumber_AddMessage.text.toString().trim()
         val messageText = edtMessage_AddMessage.text.toString().trim()
         if (requestCode == requestSendSMS && requestCode == requestReadState) {
-            addMessageViewModel.sendSMS()
+            addMessageViewModel.sendSMS(numberText,messageText)
         }
     }
 
@@ -85,14 +102,8 @@ class AddMessageActivity : AppCompatActivity() {
 //          startActivityForResult(intent, Constants.P)
         }
     }
-
-    //TODO fix Result
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == addMessageViewModel.resultTemplate && resultCode == Activity.RESULT_OK){
-            val result1 = data!!.getStringExtra("result1")
-            edtMessage_AddMessage.setText(result1)
-        }
+    override fun onBackPressed() {
+        finish()
     }
 
 

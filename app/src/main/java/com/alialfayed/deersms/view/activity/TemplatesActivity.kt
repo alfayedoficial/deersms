@@ -2,8 +2,12 @@ package com.alialfayed.deersms.view.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,22 +18,24 @@ import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.Template
 import com.alialfayed.deersms.view.adapter.TemplatesAdabter
 import com.alialfayed.livedate.viewmodel.TemplatesViewModel
+import kotlinx.android.synthetic.main.activity_add_message.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_templates.*
 import java.util.ArrayList
 
 class TemplatesActivity : AppCompatActivity() {
 
+
     private lateinit var adapter: TemplatesAdabter
     private lateinit var viewModel: TemplatesViewModel
-    internal var templateListt = ArrayList<Template>()
+
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_templates)
 
-        adapter = TemplatesAdabter(this)
+        adapter = TemplatesAdabter(this,this)
         val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
         txtAllTemplates.layoutManager = layoutManager
         txtAllTemplates.adapter = adapter
@@ -72,10 +78,11 @@ class TemplatesActivity : AppCompatActivity() {
                 edtAddTemplates_Templates.text.clear()
             }
 
-
         }
 
     }
+
+
 
     override fun onStart() {
         super.onStart()
@@ -93,6 +100,13 @@ class TemplatesActivity : AppCompatActivity() {
             return TemplatesViewModel(mActivity) as T
         }
     }
+
+    override fun onBackPressed() {
+        finish()
+    }
+
+
+
 }
 
 

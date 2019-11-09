@@ -1,7 +1,7 @@
 package com.alialfayed.deersms.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.alialfayed.deersms.R
 
 class ProfileActivity : AppCompatActivity() {
@@ -14,7 +14,10 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-//    private fun initComponent() {
+    //    private fun initComponent() {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
+    override fun onBackPressed() {
+        finish()
+    }
 }

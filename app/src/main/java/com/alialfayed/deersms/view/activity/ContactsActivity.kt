@@ -46,10 +46,13 @@ class ContactsActivity : AppCompatActivity() {
                 cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))))
         }
         cursor.close()
-        val adapter = ContactsAdabter(contactsList)
+        val adapter = ContactsAdabter(contactsList, this)
         recyclerViewtest.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
         recyclerViewtest.adapter =adapter
 
 
+    }
+    override fun onBackPressed() {
+        finish()
     }
 }

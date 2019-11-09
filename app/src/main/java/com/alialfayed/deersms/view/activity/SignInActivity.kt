@@ -76,6 +76,10 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
 
 
 

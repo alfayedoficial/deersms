@@ -11,8 +11,14 @@ import androidx.room.PrimaryKey
 class Template {
 
     @PrimaryKey(autoGenerate = true)
-    var TemplateId:Int = 0
-    lateinit var templateText : String
+    var TemplateId: Int = 0
+    var templateText = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
 
 
 }

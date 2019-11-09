@@ -52,4 +52,7 @@ class GroupContactsActivity : AppCompatActivity() {
             return GroupContactsViewModel(groupContactsActivity) as T
         }
     }
+    override fun onBackPressed() {
+        finish()
+    }
 }

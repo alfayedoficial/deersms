@@ -50,6 +50,21 @@ class HomeViewModel(val homeActivity: Activity) : ViewModel() {
         homeActivity.startActivity(intent)
     }
 
+    /**
+     * method open profile
+     */
+    fun profileActivity(){
+        val intent = Intent(homeActivity,ProfileActivity::class.java)
+        homeActivity.startActivity(intent)
+    }
+    /**
+     * method open Groups
+     */
+    fun groupsActivity(){
+        val intent = Intent(homeActivity,GroupContactsActivity::class.java)
+        homeActivity.startActivity(intent)
+    }
+
 
 
 }

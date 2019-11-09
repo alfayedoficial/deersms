@@ -47,4 +47,8 @@ class StartActivity : AppCompatActivity() , View.OnClickListener {
         }
         super.onStart()
     }
+
+    override fun onBackPressed() {
+        finish()
+    }
 }

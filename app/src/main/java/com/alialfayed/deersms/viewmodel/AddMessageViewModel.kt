@@ -1,7 +1,9 @@
 package com.alialfayed.deersms.viewmodel
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.telephony.SmsManager
+
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.alialfayed.deersms.view.activity.AddMessageActivity
@@ -21,10 +23,11 @@ class AddMessageViewModel :ViewModel() {
 
     }
 
-    fun sendSMS(){
-        val n = "01226638147"
-        val m = "yarab"
-        SmsManager.getDefault().sendTextMessage(n,null,m,null,null)
+    fun sendSMS(number:String,message:String){
+        AsyncTask.execute {   SmsManager.getDefault().sendTextMessage(number,null,message,null,null)
+
+        }
+
         Toast.makeText(addMessageActivity,"Sms sent",Toast.LENGTH_SHORT).show()
     }
 

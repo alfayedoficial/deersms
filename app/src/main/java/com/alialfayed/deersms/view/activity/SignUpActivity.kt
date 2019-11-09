@@ -75,5 +75,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         btn_Privacy_Policy.setEnabled(status)
 
     }
+    override fun onBackPressed() {
+        finish()
+    }
 
 }
