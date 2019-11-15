@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.alialfayed.deersms.repo.FirebaseHandler
 import com.alialfayed.deersms.view.activity.SignInActivity
 import com.alialfayed.deersms.view.activity.SignUpActivity
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 /**
  * Class do :

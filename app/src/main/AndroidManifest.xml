@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
@@ -16,12 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.TemplatesActivity"></activity>
+        <activity android:name=".view.activity.FQRActivity"></activity>
+        <activity android:name=".view.activity.TemplatesActivity" />
         <activity android:name=".view.activity.ContactsActivity" />
         <activity android:name=".view.activity.GroupContactsActivity" />
         <activity android:name=".view.activity.GroupNameActivity" />
         <activity android:name=".view.activity.AddGroupActivity" />
         <activity android:name=".view.activity.AddMessageActivity" />
+        <activity android:name=".view.activity.ScheduleMessageActivity" />
         <activity android:name=".view.activity.ForgetPasswordActivity" />
         <activity android:name=".view.activity.SettingsActivity" />
         <activity android:name=".view.activity.ProfileActivity" />
@@ -36,6 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".utils.SMSReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

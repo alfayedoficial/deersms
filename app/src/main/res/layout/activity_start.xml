@@ -5,7 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.StartActivity"
-    android:background="@drawable/ic_backgroundstart">
+    android:background="@drawable/ic_backgroundstart"
+    android:transitionName="@string/logo_transition"
+    >
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo"
+        android:transitionName="@string/logo_transition"
+        android:contentDescription="@string/todo" />
 
     <Button
         android:id="@+id/btnSignIn_Start"

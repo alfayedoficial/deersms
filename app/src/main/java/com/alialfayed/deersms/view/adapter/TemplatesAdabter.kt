@@ -16,11 +16,15 @@ import kotlinx.android.synthetic.main.template_item.view.*
  * Class do :
  * Created by (Eng Ali)
  */
-class TemplatesAdabter(var context: Context,var template: TemplatesActivity) : RecyclerView.Adapter<TemplatesAdabter.MyViewHolder>() {
+class TemplatesAdabter(var context: Context, var template: TemplatesActivity) :
+    RecyclerView.Adapter<TemplatesAdabter.MyViewHolder>() {
     var list: List<Template> = ArrayList<Template>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplatesAdabter.MyViewHolder {
-        var view = LayoutInflater.from(context).inflate(R.layout.template_item,parent,false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TemplatesAdabter.MyViewHolder {
+        var view = LayoutInflater.from(context).inflate(R.layout.template_item, parent, false)
         return MyViewHolder(view)
     }
 
@@ -35,24 +39,30 @@ class TemplatesAdabter(var context: Context,var template: TemplatesActivity) : R
 
     }
 
-    override fun onBindViewHolder(holder: TemplatesAdabter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = list[position].templateText
+//        holder.card.setOnClickListener {
+//            template.startActivity(Intent(template,AddMessageActivity::class.java).putExtra("result1",list.get(position).templateText))        }
         holder.card.setOnClickListener {
-            template.startActivity(Intent(template,AddMessageActivity::class.java).putExtra("result1",list.get(position).templateText))        }
+            val intent = Intent(template, AddMessageActivity::class.java)
+            intent.putExtra("Template",list.get(position).templateText)
+            template.startActivity(intent)
+            template.finish()
+        }
+
     }
 
-    fun setAdapter(list: List<Template>){
+    fun setAdapter(list: List<Template>) {
         this.list = list
         notifyDataSetChanged()
     }
 
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val title = itemView.textnote
-        val title = itemView.text_view_title
+        //        val title = itemView.textnote
+        val title = itemView.txtViewTitle_CardView_Contacts
         val card = itemView.card_Template
     }
-
 
 
 }

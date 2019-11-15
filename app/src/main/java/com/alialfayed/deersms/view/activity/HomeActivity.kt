@@ -1,6 +1,7 @@
 package com.alialfayed.deersms.view.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -61,6 +62,13 @@ class HomeActivity : AppCompatActivity() {
         when (id) {
             R.id.profile_Menu -> {
                 homeViewModel.profileActivity()
+            }
+            R.id.sync_Menu ->{
+               startActivity(Intent(this,HomeActivity::class.java))
+            }
+            R.id.rate_Menu -> {}
+            R.id.signOut_Menu -> {
+                homeViewModel.signout()
             }
         }
         return super.onOptionsItemSelected(item)

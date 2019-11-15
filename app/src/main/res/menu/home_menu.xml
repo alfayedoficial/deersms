@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sync_Menu"
+        android:title="sync"
+        android:icon="@drawable/ic_sync"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/profile_Menu"
-        android:icon="@drawable/ic_user"
         android:title="@string/profile"
         />
 
     <item
         android:id="@+id/rate_Menu"
-        android:icon="@drawable/ic_favorites"
         android:title="@string/rate_us"
+        />
+    <item
+        android:id="@+id/signOut_Menu"
+        android:title="@string/sign_out"
         />
 
 

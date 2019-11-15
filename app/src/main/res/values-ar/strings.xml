@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Deer SMS</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="sign_up">التسجيل</string>
+    <string name="create_an_account">انشاء حساب</string>
+    <string name="sing_in_with_google">التسجيل بواسطة Google</string>
+    <string name="forget_your_password">نسيان كلمة المرور</string>
+    <string name="todo">TODO</string>
+    <string name="privacy_policy"><![CDATA[بالضغط على التسجيل انت موافق , على شروط ]]></string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="privacy_policybutton">سياسية الخصوصية</string>
+    <string name="and"> و </string>
+    <string name="settings">الضبط</string>
+    <string name="language">اللغات</string>
+    <string name="support">الدعم</string>
+    <string name="arabic">العربية</string>
+    <string name="english">English</string>
+    <string name="fqr">FQR</string>
+    <string name="whatsapp_support">دعم بواسطة الواتساب</string>
+    <string name="update">تحديث</string>
+    <string name="please_enter_your_e_mail">من فضلك إدخل البريد الإلكترونى</string>
+    <string name="forget_password">نسيان كلمة المرور</string>
+    <string name="reset_password">إعادة كلمة المرور</string>
+
+    <string name="add_message">إضافة رسالة</string>
+    <string name="choose_number">اختار رقم</string>
+    <string name="email">البريد الإلكترونى</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="type_your_message">إدخل رسالتك</string>
+    <string name="time">الوقت :</string>
+    <string name="time2">الوقت</string>
+    <string name="now">الأن</string>
+    <string name="custom">مخصص </string>
+    <string name="send_via">الإرسال بواسطة :</string>
+    <string name="add_group">إضافة مجموعة</string>
+    <string name="choose_name_group">إدخل اسم المجموعة</string>
+    <string name="menu">قائمة</string>
+    <string name="profile">الصفحة الشخصية</string>
+    <string name="groups">المجموعات</string>
+    <string name="setting">إعدادات</string>
+    <string name="rate_us">قيم التطبيق</string>
+
+    <string name="message_confirm_error">كلمة السر غير متوافقة</string>
+    <string name="message_empty_error">لا يمكن ترك الحقل فارغ </string>
+    <string name="edit">تحرير</string>
+    <string name="delete">حذف</string>
+    <string name="contacts">الأسماء</string>
+    <string name="templates">قوالب</string>
+    <string name="add_templates">إضافة قالب جديد</string>
+    <string name="date">اليوم</string>
+    <string name="logo_transition">logoanimation</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="fqr1">How To Use App ?</string>
+    <string name="fqr1_2">using by add message .</string>
+    <string name="fqr2">Does the application breaches</string>
+    <string name="fqr2_2">No .</string>
+    <string name="fqr3">How to send message ?</string>
+    <string name="fqr3_2">Go to Add Message Activity and insert number , message , choose send via by Whatsapp or SMS .</string>
+    <string name="fqr4">How to add group ?</string>
+    <string name="fqr4_2">Go to add group , insert name group and select numbers .</string>
+
+
+</resources>
