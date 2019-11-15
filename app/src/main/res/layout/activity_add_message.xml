@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
         android:autofillHints="number"
         android:background="@drawable/btn_start"
@@ -48,7 +48,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/edtNumber_AddMessage"
@@ -74,37 +74,24 @@
         app:layout_constraintTop_toBottomOf="@+id/edtname_AddMessage" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/trashhandfont"
-        android:text="@string/time"
-        android:textColor="@color/textcolor"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/edtMessage_AddMessage" />
-
-    <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/trashhandfont"
         android:text="@string/send_via"
         android:textColor="@color/textcolor"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <EditText
         android:id="@+id/edtMessage_AddMessage"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="50dp"
         android:autofillHints="Text"
         android:background="@drawable/btn_start"
@@ -126,7 +113,21 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNumber_AddMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/imageBtnSpeaker_AddMessage" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/trashhandfont"
+        android:text="@string/time"
+        android:textColor="@color/textcolor"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintTop_toBottomOf="@+id/edtMessage_AddMessage"
+        tools:visibility="visible" />
 
     <RadioGroup
         android:id="@+id/checkerButtonTime_AddMessage"
@@ -138,7 +139,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8">
+        app:layout_constraintTop_toTopOf="@+id/textView8"
+        tools:visibility="visible">
 
         <RadioButton
             android:id="@+id/radioBtnNow_AddMessage"
@@ -258,18 +260,17 @@
         android:id="@+id/imageBtnAttach_AddMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@null"
         app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toTopOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintTop_toTopOf="@+id/imageBtnSpeaker_AddMessage"
         app:srcCompat="@drawable/ic_attachment" />
 
     <ImageButton
         android:id="@+id/imageBtnSend_AddMessage"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_start"
         android:paddingStart="20dp"
         android:paddingLeft="20dp"
@@ -279,7 +280,7 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
         app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:srcCompat="@drawable/ic_sent_mail" />
 
     <ImageButton
@@ -320,6 +321,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="341dp" />
+
+    <ImageView
+        android:id="@+id/imageBtnSpeaker_AddMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageBtnAttach_AddMessage"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumber_AddMessage"
+        app:srcCompat="@drawable/ic_microphone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
@@ -23,11 +24,14 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_templates.*
 import java.util.ArrayList
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class TemplatesActivity : AppCompatActivity() {
 
 
     private lateinit var adapter: TemplatesAdabter
     private lateinit var viewModel: TemplatesViewModel
+    lateinit var textName: String
+    lateinit var textPhone:String
 
 
     @SuppressLint("RestrictedApi")
@@ -78,6 +82,18 @@ class TemplatesActivity : AppCompatActivity() {
                 edtAddTemplates_Templates.text.clear()
             }
 
+        }
+        if (intent.getStringExtra("teName") != null && intent.getStringExtra("tePhone") != null) {
+             textName = intent.getStringExtra("teName")
+            textPhone = intent.getStringExtra("tePhone")
+//            Toast.makeText(this,textName +textPhone , Toast.LENGTH_LONG ).show()
+        }else if (intent.getStringExtra("teName") == null){
+                val textName: String = intent.getStringExtra("teName")
+//                intent.putExtra("TName","Name test")
+        }else if (intent.getStringExtra("tePhone") != null) {
+//            Toast.makeText(this,"null 3" , Toast.LENGTH_LONG ).show()
+            val textPhone: String = intent.getStringExtra("tePhone")
+//            intent.putExtra("TPhone","Phone test")
         }
 
     }

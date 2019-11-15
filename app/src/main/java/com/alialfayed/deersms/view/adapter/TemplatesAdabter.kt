@@ -2,9 +2,12 @@ package com.alialfayed.deersms.view.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.res.TypedArrayUtils.getText
 import androidx.recyclerview.widget.RecyclerView
 import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.Template
@@ -16,6 +19,7 @@ import kotlinx.android.synthetic.main.template_item.view.*
  * Class do :
  * Created by (Eng Ali)
  */
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class TemplatesAdabter(var context: Context, var template: TemplatesActivity) :
     RecyclerView.Adapter<TemplatesAdabter.MyViewHolder>() {
     var list: List<Template> = ArrayList<Template>()
@@ -46,6 +50,15 @@ class TemplatesAdabter(var context: Context, var template: TemplatesActivity) :
         holder.card.setOnClickListener {
             val intent = Intent(template, AddMessageActivity::class.java)
             intent.putExtra("Template",list.get(position).templateText)
+
+            if(!template.textPhone.isEmpty() && !template.textName.isEmpty()){
+                intent.putExtra("TName",template.textName)
+                intent.putExtra("TPhone",template.textPhone)
+            }else if (!template.textPhone.isEmpty()){
+                intent.putExtra("TPhone",template.textPhone)
+            }else if ( !template.textName.isEmpty()){
+                intent.putExtra("TName",template.textName)
+            }
             template.startActivity(intent)
             template.finish()
         }
