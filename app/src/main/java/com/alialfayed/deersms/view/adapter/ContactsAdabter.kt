@@ -11,7 +11,6 @@ import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.Contacts
 import com.alialfayed.deersms.view.activity.AddMessageActivity
 import com.alialfayed.deersms.view.activity.ContactsActivity
-import kotlinx.android.synthetic.main.cardview_contacts.view.*
 
 /**
  * Class do :

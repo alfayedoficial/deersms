@@ -1,16 +1,19 @@
-package com.alialfayed.deersms.repo
+package com.alialfayed.deersms.ContactsRepository
 
+import android.content.Context
 import android.net.Uri
 import android.provider.ContactsContract
 import android.provider.MediaStore
 import com.alialfayed.deersms.model.ContactList
+import com.alialfayed.deersms.viewmodel.AddGroupViewModel
 import com.alialfayed.deersms.viewmodel.ContactsViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ContactsRepository {
 
-    var contactViewModel: ContactsViewModel
+    lateinit var contactViewModel: ContactsViewModel
+    lateinit var addGroupViewModel: AddGroupViewModel
 
 
     constructor(contactViewModel: ContactsViewModel) {
@@ -18,10 +21,15 @@ class ContactsRepository {
     }
 
 
-    fun getContactsList(): List<ContactList> {
+    constructor(addGroupViewModel: AddGroupViewModel) {
+        this.addGroupViewModel = addGroupViewModel
+    }
+
+
+    fun getContactsList(context: Context): List<ContactList> {
 
         val contactList: MutableList<ContactList> = ArrayList()
-        val contacts = contactViewModel.passContext().contentResolver.query(
+        val contacts = context.contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             null,
             null,
@@ -40,7 +48,7 @@ class ContactsRepository {
                 contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI))
             if (photo_uri != null) {
                 obj.image = MediaStore.Images.Media.getBitmap(
-                    contactViewModel.passContext().contentResolver,
+                    context.contentResolver,
                     Uri.parse(photo_uri)
                 )
             }

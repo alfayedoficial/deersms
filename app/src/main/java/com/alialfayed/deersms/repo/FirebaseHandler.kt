@@ -1,23 +1,11 @@
 package com.alialfayed.deersms.repo
 
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import com.alialfayed.deersms.R
-import com.alialfayed.deersms.model.GroupFirebase
-import com.alialfayed.deersms.model.GroupNambers
 import com.alialfayed.deersms.model.MessageFirebase
-import com.alialfayed.deersms.view.activity.HomeActivity
 import com.alialfayed.deersms.viewmodel.*
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -195,26 +183,26 @@ class FirebaseHandler(activity: Activity) {
             })
     }
 
-    fun addGroup(groupName: String, groupNumbers: Array<List<GroupNambers>>) {
-
-        /**
-         * create  Message Firebase
-         */
-        val groupId: String = databaseReference?.push()?.key.toString()
-        val groupFirebase = GroupFirebase(
-            groupId,
-            groupName,
-            groupNumbers,
-            FirebaseAuth.getInstance().currentUser!!.uid
-        )
-
-        /**
-         * insert Message Firebase
-         */
-        databaseReference?.child(groupId)?.setValue(groupFirebase)
-
-
-    }
+//    fun addGroup(groupName: String, groupNumbers: Array<List<GroupNambers>>) {
+//
+//        /**
+//         * create  Message Firebase
+//         */
+//        val groupId: String = databaseReference?.push()?.key.toString()
+//        val groupFirebase = GroupFirebase(
+//            groupId,
+//            groupName,
+//            groupNumbers,
+//            FirebaseAuth.getInstance().currentUser!!.uid
+//        )
+//
+//        /**
+//         * insert Message Firebase
+//         */
+//        databaseReference?.child(groupId)?.setValue(groupFirebase)
+//
+//
+//    }
 
     fun scheduleMessageRepository(
         personName: String, receiverNumber: String, SMSMessage: String,

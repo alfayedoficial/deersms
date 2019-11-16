@@ -91,8 +91,17 @@ class AddMessageActivity : AppCompatActivity() {
                 }
                 R.id.radioBtnSMS_AddMessage -> {
                     checkerButtonSend = true
-                    checkerButtonTime_AddMessage.setVisibility(View.VISIBLE)
-                    textView8.setVisibility(View.VISIBLE)
+                    if(checkerButtonTime_AddMessage.visibility.equals(View.GONE) || textView8.visibility.equals(View.GONE)){
+                        checkerButtonTime_AddMessage.setVisibility(View.VISIBLE)
+                        textView8.setVisibility(View.VISIBLE)
+                        linearLayout_AddMessage.setVisibility(View.GONE)
+
+                    }else{
+                        checkerButtonTime_AddMessage.setVisibility(View.GONE)
+                        textView8.setVisibility(View.GONE)
+                        linearLayout_AddMessage.setVisibility(View.GONE)
+                    }
+
                 }
             }
         }
@@ -248,13 +257,13 @@ class AddMessageActivity : AppCompatActivity() {
                         addNowMessageActivity(currentDate, currentTime, sendVia)
                         Log.i("Date now", currentDate + currentTime)
                         isSendNow = false
-                        finishSend()
+                        finishNowSend()
                     } else {
 //                     if isSendNow = false
                         sendVia = "SMS"
                         addScheduleMessageActivity(sendVia)
                         isSendNow = true
-                        finishSend()
+                        finishScheduleSend()
                     }
                     checkerButtonSend = false
                 }
@@ -530,13 +539,23 @@ class AddMessageActivity : AppCompatActivity() {
         }
     }
 
-    fun finishSend(){
+    fun finishNowSend(){
+        val phone = edtNumber_AddMessage.text.toString().trim()
+        val message = edtMessage_AddMessage.text.toString().trim()
+        val name = edtname_AddMessage.text.toString().trim()
+        if (phone.isEmpty() || message.isEmpty() || name.isEmpty()) {
+            Toast.makeText(this, "Please Check Your Fields ", Toast.LENGTH_SHORT).show()
+        }else{
+            startActivity(Intent(this,HomeActivity::class.java))
+        }
+    }
+    fun finishScheduleSend(){
         val phone = edtNumber_AddMessage.text.toString().trim()
         val message = edtMessage_AddMessage.text.toString().trim()
         val name = edtname_AddMessage.text.toString().trim()
         val date = txtDate_AddMessage.text.toString().trim()
         val time = txtTime_AddMessage.text.toString().trim()
-        if (phone.isEmpty() || message.isEmpty() || name.isEmpty()) {
+        if (phone.isEmpty() || message.isEmpty() || name.isEmpty() || date.isEmpty() || time.isEmpty()) {
             Toast.makeText(this, "Please Check Your Fields ", Toast.LENGTH_SHORT).show()
         }else{
             startActivity(Intent(this,HomeActivity::class.java))

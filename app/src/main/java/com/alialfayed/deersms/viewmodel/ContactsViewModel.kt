@@ -5,18 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alialfayed.deersms.model.ContactList
-import com.alialfayed.deersms.repo.ContactsRepository
+import com.alialfayed.deersms.repo.ContactsRepository_D
 import com.alialfayed.deersms.view.fragment.ContactsFragment
 
 class ContactsViewModel : ViewModel {
     var viewRef: ContactsFragment? = null
-    var repoRef: ContactsRepository? = null
+    var repoRef: ContactsRepository_D? = null
     private lateinit var mutableLiveData: MutableLiveData<List<ContactList>>
 
 
     constructor(viewRef: ContactsFragment) {
         this.viewRef = viewRef
-        repoRef = ContactsRepository(this)
+        repoRef = ContactsRepository_D(this)
         mutableLiveData = MutableLiveData()
 
     }
@@ -26,7 +26,7 @@ class ContactsViewModel : ViewModel {
     }
 
     fun getAllOrders(): MutableLiveData<ArrayList<ContactList>> {
-        // val contactsList = repoRef!!.getContactsList()
+        // val contactsList = contactsRepository!!.getContactsList()
         mutableLiveData.postValue(repoRef!!.getContactsList())
 
         return mutableLiveData as MutableLiveData<ArrayList<ContactList>>

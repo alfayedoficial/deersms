@@ -7,12 +7,26 @@ package com.alialfayed.deersms.model
 class GroupFirebase {
     private lateinit var groupId :String
     private lateinit var groupName :String
-    private lateinit var groupNumbers :Array<List<GroupNambers>>
+    private lateinit var groupNumbers :ArrayList<ContactList>
     private lateinit var userID: String
 
-    constructor(groupId :String ,groupName :String , groupNumbers :Array<List<GroupNambers>> , userID: String )
-}
-class GroupNambers{
-    private lateinit var name:String
-    private lateinit var phone:String
+    constructor(userid: String, groupName: String, groupMembers: ArrayList<ContactList>) {
+        this.groupId = userid
+        this.groupName = groupName
+        this.groupNumbers = groupMembers
+    }
+
+    constructor() {}
+
+    constructor( userID: String ,groupId :String ,groupName :String , groupNumbers :ArrayList<ContactList>){
+        this.userID =userID
+        this.groupId = groupId
+        this.groupName = groupName
+        this.groupNumbers = groupNumbers
+    }
+
+    fun getUserID(): String{ return userID }
+    fun getGroupId(): String{ return groupId }
+    fun getGroupName(): String{ return groupName }
+    fun getGroupNumbers(): ArrayList<ContactList>{ return groupNumbers }
 }

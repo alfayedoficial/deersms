@@ -36,6 +36,7 @@ class PendingFragment : Fragment() {
          view = inflater.inflate(layout.fragment_pending, container, false)
         mrecyclerView  = view.findViewById(R.id.recyclerView_Pending)
         mdatabaseReference = FirebaseDatabase.getInstance().getReference("Message")
+        mdatabaseReference.keepSynced(true)
         pendingList = ArrayList()
         return view
     }

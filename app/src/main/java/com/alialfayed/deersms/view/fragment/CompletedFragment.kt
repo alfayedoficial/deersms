@@ -32,6 +32,8 @@ class CompletedFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_completed, container, false)
         recyclerView_Completed = view.findViewById(R.id.recyclerView_Completed)
         mdatabaseReference = FirebaseDatabase.getInstance().getReference("Message")
+        // Offline Firebase
+        mdatabaseReference.keepSynced(true)
         completedList = ArrayList()
 
         return view

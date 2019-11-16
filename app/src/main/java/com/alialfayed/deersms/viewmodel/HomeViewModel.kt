@@ -31,7 +31,7 @@ class HomeViewModel(val homeActivity: Activity) : ViewModel() {
      * method do (move to add Group)
      */
     fun addGroups(){
-        val intent = Intent(homeActivity,AddGroupActivity::class.java)
+        val intent = Intent(homeActivity, AddGroupActivity::class.java)
         homeActivity.startActivity(intent)
     }
 

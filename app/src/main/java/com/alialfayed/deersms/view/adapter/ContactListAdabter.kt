@@ -2,6 +2,7 @@ package com.alialfayed.deersms.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.ContactList
+import com.alialfayed.deersms.view.activity.AddMessageActivity
 import kotlinx.android.synthetic.main.cardview_contacts.view.*
+
 
 /**
  * Class do :
@@ -27,6 +29,7 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
     }
 
     private var context: Context? = null
+    //    private lateinit var groupContactsActivity :GroupContactsActivity
     private var list: MutableList<ContactList>? = null
     private var fulllist: List<ContactList>? = null
     internal var chnageStatusListener: ChnageStatusListener? = null
@@ -47,12 +50,15 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
                 holder.contactImage.setImageBitmap(contact.image)
             else
                 holder.contactImage.setImageDrawable(
-                    ContextCompat.getDrawable(context!!, R.mipmap.ic_launcher_round)
+                    ContextCompat.getDrawable(
+                        context!!,
+                        com.alialfayed.deersms.R.mipmap.ic_launcher_round
+                    )
                 )
-            if (!contact.isSelected()) {
-                holder.view.setBackgroundResource(R.color.background)
+            if (contact.isSelected()) {
+                holder.view.setBackgroundResource(com.alialfayed.deersms.R.color.background)
             } else {
-                holder.view.setBackgroundResource(R.color.cardView_color)
+                holder.view.setBackgroundResource(com.alialfayed.deersms.R.color.cardView_color)
             }
 
 
@@ -64,18 +70,30 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
             } else {
                 model1.setSelected(true)
             }
+
             list!!.set(holder.position!!, model1)
             if (chnageStatusListener != null) {
                 chnageStatusListener!!.onItemChangeListener(holder.position!!, model1)
             }
             notifyItemChanged(holder.position!!)
         }
+
+        holder.view.setOnLongClickListener {
+            val intent = Intent(context, AddMessageActivity::class.java)
+            intent.putExtra("nameContact", contact.name)
+            intent.putExtra("phoneContact", contact.number)
+            context?.startActivity(intent)
+            return@setOnLongClickListener true
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderClass {
         context = parent.getContext()
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.cardview_contacts, parent, false)
+        val view = inflater.inflate(
+            com.alialfayed.deersms.R.layout.cardview_contacts,
+            parent, false
+        )
         return HolderClass(view)
 
     }
@@ -84,11 +102,9 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
         this.list = contactList
         fulllist = ArrayList(list!!)
         notifyDataSetChanged()
-
     }
 
     inner class HolderClass : RecyclerView.ViewHolder {
-
         val contactName: TextView
         val contactNumber: TextView
         val contactImage: ImageView
@@ -101,8 +117,6 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
             contactNumber = itemView.txtNumber_CardView_Contacts
             contactImage = itemView.imageView_CardView_Contacts
             this.view = itemView
-
-
         }
 
     }
@@ -114,29 +128,22 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
     private val contactsFilter = object : android.widget.Filter() {
         override fun performFiltering(constraint: CharSequence?): android.widget.Filter.FilterResults {
             val filteredList: ArrayList<ContactList> = ArrayList()
-
             if (constraint == null || constraint.length == 0) {
                 filteredList.addAll(fulllist!!)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
-
                 for (item in fulllist!!) {
                     if (item.name.toLowerCase().contains(filterPattern)) {
                         filteredList.add(item)
                     }
                 }
             }
-
-            val results = android.widget.Filter.FilterResults()
+            val results = FilterResults()
             results.values = filteredList
-
             return results
         }
 
-        override fun publishResults(
-            constraint: CharSequence,
-            results: android.widget.Filter.FilterResults
-        ) {
+        override fun publishResults(constraint: CharSequence, results: FilterResults) {
             list!!.clear()
             list!!.addAll(results.values as Collection<ContactList>)
             notifyDataSetChanged()

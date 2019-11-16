@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.alialfayed.deersms.R
+import com.alialfayed.deersms.view.adapter.ContactListAdabter
 import com.alialfayed.deersms.view.adapter.GroupContactsAdabter
 import com.alialfayed.deersms.view.adapter.HomeAdabter
 import com.alialfayed.deersms.view.fragment.CompletedFragment
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 class GroupContactsActivity : AppCompatActivity() {
 
     private lateinit var groupContactsViewModel: GroupContactsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_contacts)
