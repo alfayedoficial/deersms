@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.alialfayed.deersms.model.ContactList
 import com.alialfayed.deersms.view.activity.AddMessageActivity
+import com.alialfayed.deersms.view.activity.WhatsAppActivity
 import kotlinx.android.synthetic.main.cardview_contacts.view.*
 
 
@@ -29,6 +30,7 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
     }
 
     private var context: Context? = null
+    private var checker: Boolean = true
     //    private lateinit var groupContactsActivity :GroupContactsActivity
     private var list: MutableList<ContactList>? = null
     private var fulllist: List<ContactList>? = null
@@ -63,7 +65,7 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
 
 
         }
-        holder.view.setOnClickListener {
+        holder.view.setOnLongClickListener {
             val model1: ContactList = list!!.get(position)
             if (model1.isSelected()) {
                 model1.setSelected(false)
@@ -76,14 +78,36 @@ class ContactListAdabter : RecyclerView.Adapter<ContactListAdabter.HolderClass>(
                 chnageStatusListener!!.onItemChangeListener(holder.position!!, model1)
             }
             notifyItemChanged(holder.position!!)
+            checker = false
+
+            return@setOnLongClickListener true
+
+
         }
 
-        holder.view.setOnLongClickListener {
-            val intent = Intent(context, AddMessageActivity::class.java)
-            intent.putExtra("nameContact", contact.name)
-            intent.putExtra("phoneContact", contact.number)
-            context?.startActivity(intent)
-            return@setOnLongClickListener true
+        holder.view.setOnClickListener {
+            if (checker) {
+                val intent = Intent(context, AddMessageActivity::class.java)
+                intent.putExtra("nameContact", contact.name)
+                intent.putExtra("phoneContact", contact.number)
+                context?.startActivity(intent)
+//            activity?.finish()
+            } else {
+                val model1: ContactList = list!!.get(position)
+                if (model1.isSelected()) {
+                    model1.setSelected(false)
+                } else {
+                    model1.setSelected(true)
+                }
+
+                list!!.set(holder.position!!, model1)
+                if (chnageStatusListener != null) {
+                    chnageStatusListener!!.onItemChangeListener(holder.position!!, model1)
+                }
+                notifyItemChanged(holder.position!!)
+                checker = false
+            }
+
         }
     }
 

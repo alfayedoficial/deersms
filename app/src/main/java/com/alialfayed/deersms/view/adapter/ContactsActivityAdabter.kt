@@ -33,7 +33,7 @@ class ContactsActivityAdabter(val contactsList:ArrayList<Contacts>, var contacts
 
       val card =  contactsList[position]
         holder.getCardView()!!.setOnClickListener {
-            val intent = Intent(contactsActivity,AddMessageActivity::class.java)
+            val intent = Intent(contactsActivity,WhatsAppActivity::class.java)
             intent.putExtra("nameContact" , card.getName())
             intent.putExtra("phoneContact" , card.getPhone())
             contactsActivity.startActivity(intent)

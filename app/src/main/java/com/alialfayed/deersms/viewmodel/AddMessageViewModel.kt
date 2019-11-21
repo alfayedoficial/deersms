@@ -47,7 +47,7 @@ class AddMessageViewModel : ViewModel() {
     }
 
     fun getContacts() {
-        val intent = Intent(addMessageActivity, ContactsActivity::class.java)
+        val intent = Intent(addMessageActivity, GroupContactsActivity::class.java)
         addMessageActivity.startActivity(intent)
     }
 
