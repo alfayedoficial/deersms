@@ -252,6 +252,37 @@ class FirebaseHandler(activity: Activity) {
         )
     }
 
+    fun scheduleMessageRepository(
+        personName: String, receiverNumber: String, SMSMessage: String,
+        date: String, time: String, status: String, type: String,
+        smsDelivered: String,calendar: Long
+    ) {
+
+        /**
+         * create  Message Firebase
+         */
+        databaseReference = FirebaseDatabase.getInstance().getReference("Message")
+        val smsId: String = databaseReference.push().key.toString()
+        val message = MessageFirebase(
+            smsId, personName, receiverNumber, SMSMessage, date, time, status, type,
+            FirebaseAuth.getInstance().currentUser!!.uid, calendar, smsDelivered
+        )
+        /**
+         * insert Message Firebase
+         */
+        databaseReference.child(smsId).setValue(message)
+
+        /**
+         * set Alarm Message
+         */
+        currentSIMViewModel.setSMSAlarm(
+            message.getSmsId(), message.getSmsReceiverName(),
+            message.getSmsReceiverNumber(), message.getSmsMsg(), message.getSmsDate(),
+            message.getSmsTime(), message.getSmsStatus(), message.getSmsType(), message.getUserID(),
+            message.getSmsCalender(), message.getSmsDelivered()
+        )
+    }
+
     fun scheduleWhatsAppMessageRepository(
         personName: String, personNumber: String, whatsAppMessage: String,
         whatsAppDate: String, whatsAppTime: String, whatsAppStatus: String, whatsAppSendVia: String,

@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtname_CurrentSIM" />
 
     <EditText
-        android:id="@+id/edtGroup_AddMessage"
+        android:id="@+id/edtGroup_CurrentSIM"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"

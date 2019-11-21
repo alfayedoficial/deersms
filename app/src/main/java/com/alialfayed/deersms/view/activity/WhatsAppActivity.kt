@@ -98,7 +98,6 @@ class WhatsAppActivity : AppCompatActivity() {
                 startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
             }
         }
-
         /**
          * editText Reset Activity
          */
