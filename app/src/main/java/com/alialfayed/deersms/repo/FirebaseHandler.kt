@@ -33,6 +33,7 @@ class FirebaseHandler(activity: Activity) {
     lateinit var addMessageViewModel: AddMessageViewModel
     internal lateinit var updateList: ArrayList<MessageFirebase>
     lateinit var whatsAppViewModel : WhatsAppViewModel
+    lateinit var currentSIMViewModel: CurrentSIMViewModel
 
 
 
@@ -106,6 +107,12 @@ class FirebaseHandler(activity: Activity) {
     constructor(activity: Activity, whatsAppViewModel: WhatsAppViewModel)
             : this( activity ) {
         this.whatsAppViewModel = whatsAppViewModel
+        mAuth = FirebaseAuth.getInstance()
+        currentUser = mAuth.currentUser
+        databaseReference = FirebaseDatabase.getInstance().getReference("Message")
+    }
+    constructor(activity: Activity , currentSIMViewModel: CurrentSIMViewModel):this(activity){
+        this.currentSIMViewModel = currentSIMViewModel
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth.currentUser
         databaseReference = FirebaseDatabase.getInstance().getReference("Message")
