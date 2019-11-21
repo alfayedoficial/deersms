@@ -172,8 +172,8 @@ class CurrentSIMActivity : AppCompatActivity() {
         intent.putExtra("SmsStatus", status)
         intent.putExtra("SmsType", type)
         intent.putExtra("UserID", currentUser)
-        intent.putExtra("calendar", calendar)
         intent.putExtra("SmsDelivered", smsDelivered)
+        intent.putExtra("calendar", calendar)
 
         val pendingIntent: PendingIntent =
             PendingIntent.getBroadcast(this@CurrentSIMActivity, smsId.hashCode(), intent, 0)

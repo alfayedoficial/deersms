@@ -260,7 +260,7 @@ class CurrentSIMViewModel(val currentSIMActivity: CurrentSIMActivity):ViewModel(
     }
 
     fun getContacts() {
-        val intent = Intent(currentSIMActivity, GroupContactsActivity::class.java)
+        val intent = Intent(currentSIMActivity,ContactsSMSActivity::class.java)
         intent.putExtra("SMSMode","goBack")
         currentSIMActivity.startActivity(intent)
     }

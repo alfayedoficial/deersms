@@ -13,7 +13,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/trashhandfont"
-        android:text="@string/add_message"
+        android:text="@string/whatsapp"
         android:textColor="@color/textcolor"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"

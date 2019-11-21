@@ -39,7 +39,7 @@ class SMSReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        databaseReferenceMsg = FirebaseDatabase.getInstance().getReference("Messages")
+        databaseReferenceMsg = FirebaseDatabase.getInstance().getReference("Message")
         sentPendingIntent = PendingIntent.getBroadcast(context, 0, Intent("Message sent"), 0)
         deliveredPendingIntent = PendingIntent.getBroadcast(context, 0, Intent("message delivered"), 0)
 

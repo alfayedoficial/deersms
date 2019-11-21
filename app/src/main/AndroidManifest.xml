@@ -32,6 +32,9 @@
             android:name=".view.activity.ContactsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.activity.ContactsSMSActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.activity.FQRActivity"
             android:screenOrientation="portrait" />
         <activity

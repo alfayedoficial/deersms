@@ -632,8 +632,8 @@ class AddMessageActivity : AppCompatActivity() {
         intent.putExtra("SmsStatus", status)
         intent.putExtra("SmsType", type)
         intent.putExtra("UserID", currentUser)
-        intent.putExtra("calendar", calendar)
         intent.putExtra("SmsDelivered", smsDelivered)
+        intent.putExtra("calendar", calendar)
 
         val pendingIntent: PendingIntent =
             PendingIntent.getBroadcast(this@AddMessageActivity, smsId.hashCode(), intent, 0)
