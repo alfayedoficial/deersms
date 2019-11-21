@@ -11,12 +11,13 @@ import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.Contacts
 import com.alialfayed.deersms.view.activity.AddMessageActivity
 import com.alialfayed.deersms.view.activity.ContactsActivity
+import com.alialfayed.deersms.view.activity.WhatsAppActivity
 
 /**
  * Class do :
  * Created by ( Eng Ali)
  */
-class ContactsAdabter(val contactsList:ArrayList<Contacts>, var contactsActivity: ContactsActivity):RecyclerView.Adapter<ContactsAdabter.ViewHolder>() {
+class ContactsActivityAdabter(val contactsList:ArrayList<Contacts>, var contactsActivity: ContactsActivity):RecyclerView.Adapter<ContactsActivityAdabter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

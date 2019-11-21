@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,17 +16,17 @@ import com.alialfayed.deersms.view.adapter.HomeAdabter
 import com.alialfayed.deersms.view.fragment.CompletedFragment
 import com.alialfayed.deersms.view.fragment.PendingFragment
 import com.alialfayed.deersms.viewmodel.HomeViewModel
-import com.emredavarci.floatingactionmenu.FloatingActionMenu
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
+
 
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.alialfayed.deersms.R.layout.activity_home)
+        setContentView(R.layout.activity_home)
 
         homeViewModel =
             ViewModelProviders.of(this, MyViewModelFactory(this)).get(HomeViewModel::class.java)
@@ -36,24 +36,21 @@ class HomeActivity : AppCompatActivity() {
         tabs!!.setupWithViewPager(tabViewpager_Home)
         //setting toolbar
         setSupportActionBar(toolbar)
-
-        //floatingActionButton
-        floatingActions()
-
-//        initComponent()
+        initComponent()
 
     }
-
-//    private fun initComponent() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-
-
     //setting menu in action bar
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.home_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun initComponent() {
+        imageBtnAddMessage.setOnClickListener(this)
+        imageBtnAddGroup.setOnClickListener(this)
+        imageBtnGroupContacts.setOnClickListener(this)
+        imageBtnSettings.setOnClickListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -63,10 +60,11 @@ class HomeActivity : AppCompatActivity() {
             R.id.profile_Menu -> {
                 homeViewModel.profileActivity()
             }
-            R.id.sync_Menu ->{
-               startActivity(Intent(this,HomeActivity::class.java))
+            R.id.sync_Menu -> {
+                startActivity(Intent(this, HomeActivity::class.java))
             }
-            R.id.rate_Menu -> {}
+            R.id.rate_Menu -> {
+            }
             R.id.signOut_Menu -> {
                 homeViewModel.signout()
             }
@@ -81,20 +79,22 @@ class HomeActivity : AppCompatActivity() {
         viewPager.adapter = adapter
     }
 
-    private fun floatingActions() {
-        val menu: FloatingActionMenu = floatingMenu
-
-        menu.setClickEvent { index ->
-            //            Log.d("TAG", index.toString()) // index of clicked menu item
-            when (index) {
-                0 -> { homeViewModel.addMessage() }
-                1 -> { homeViewModel.addGroups() }
-                2 -> { homeViewModel.groupContacts() }
-//                2 -> { homeViewModel.contacts() }
-                3 -> { homeViewModel.settings() }
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.imageBtnAddMessage -> {
+                homeViewModel.addMessage()
+            }
+            R.id.imageBtnAddGroup -> {
+                homeViewModel.addGroups()
+            }
+            R.id.imageBtnGroupContacts -> {
+                homeViewModel.groupContacts()
+//                homeViewModel.contacts()
+            }
+            R.id.imageBtnSettings -> {
+                homeViewModel.settings()
             }
         }
-
 
     }
 
@@ -107,5 +107,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onBackPressed() {
         finish()
     }
+
 
 }

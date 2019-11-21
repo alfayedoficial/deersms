@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.alialfayed.deersms">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -9,29 +10,69 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".Deersms"
         android:allowBackup="true"
+        android:configChanges="locale"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:configChanges="locale"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.FQRActivity"></activity>
-        <activity android:name=".view.activity.TemplatesActivity" />
-        <activity android:name=".view.activity.ContactsActivity" />
-        <activity android:name=".view.activity.GroupContactsActivity" />
-        <activity android:name=".view.activity.GroupNameActivity" />
-        <activity android:name=".view.activity.AddGroupActivity" />
-        <activity android:name=".view.activity.AddMessageActivity" />
-        <activity android:name=".view.activity.ScheduleMessageActivity" />
-        <activity android:name=".view.activity.ForgetPasswordActivity" />
-        <activity android:name=".view.activity.SettingsActivity" />
-        <activity android:name=".view.activity.ProfileActivity" />
-        <activity android:name=".view.activity.HomeActivity" />
-        <activity android:name=".view.activity.SignUpActivity" />
-        <activity android:name=".view.activity.SignInActivity" />
-        <activity android:name=".view.activity.StartActivity" />
-        <activity android:name=".view.activity.SplashActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".view.activity.WhatsAppActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.CurrentSIMActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ChoosePlanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.FQRActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.TemplatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.GroupContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.EditMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AddGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AddMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.StartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,6 +84,24 @@
             android:name=".utils.SMSReceiver"
             android:enabled="true"
             android:exported="true" />
+
+        <receiver
+            android:name=".utils.WhatsAppReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".utils.WhatsappAccessibilityService"
+            android:label="WhatsappAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/xml_whatsapp" />
+
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

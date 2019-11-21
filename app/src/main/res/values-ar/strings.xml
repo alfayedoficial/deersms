@@ -60,6 +60,7 @@
     <string name="fqr3_2">Go to Add Message Activity and insert number , message , choose send via by Whatsapp or SMS .</string>
     <string name="fqr4">How to add group ?</string>
     <string name="fqr4_2">Go to add group , insert name group and select numbers .</string>
+    <string name="sorry_you_do_not_have_groups">Sorry you do not have groups</string>
 
 
 </resources>

@@ -39,11 +39,9 @@ class SMSReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        databaseReferenceMsg = FirebaseDatabase.getInstance().getReference("Message")
-
+        databaseReferenceMsg = FirebaseDatabase.getInstance().getReference("Messages")
         sentPendingIntent = PendingIntent.getBroadcast(context, 0, Intent("Message sent"), 0)
-        deliveredPendingIntent =
-            PendingIntent.getBroadcast(context, 0, Intent("message delivered"), 0)
+        deliveredPendingIntent = PendingIntent.getBroadcast(context, 0, Intent("message delivered"), 0)
 
         smsId = intent?.extras?.getString("SmsId")!!
         smsReceiverName = intent.extras?.getString("SmsReceiverName")!!
@@ -54,53 +52,43 @@ class SMSReceiver : BroadcastReceiver() {
         smsStatus = intent.extras?.getString("SmsStatus")!!
         smsType = intent.extras?.getString("SmsType")!!
         userID = intent.extras?.getString("UserID")!!
-        calendar = intent.extras!!.getLong("calendar")
         smsDelivered = intent.extras?.getString("SmsDelivered")!!
+        calendar = intent.extras!!.getLong("calendar")
 
         val smsManager: SmsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(
-            smsReceiverNumber,
-            null,
-            smsMsg,
-            sentPendingIntent,
-            deliveredPendingIntent
-        )
-
+        smsManager.sendTextMessage(smsReceiverNumber, null, smsMsg, sentPendingIntent, deliveredPendingIntent)
 
         smsSentReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, arg1: Intent) {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
-                        Toast.makeText(context, "Message sent", Toast.LENGTH_SHORT).show()
-
+                        // update msg on fireBase
                         updateMsg("Completed" ,"Sent")
-                        showNotification(context, "message sent")
+                        // show notification
+                        showNotification(context, "Message sent")
                     }
                     SmsManager.RESULT_ERROR_GENERIC_FAILURE -> {
-                        Toast.makeText(context, "GENERIC FAILURE", Toast.LENGTH_SHORT).show()
-
+                        // update msg on fireBase
                         updateMsg("GENERIC FAILURE" , "GENERIC FAILURE" )
+                        // show notification
                         showNotification(context, " GENERIC FAILURE")
                     }
                     SmsManager.RESULT_ERROR_NO_SERVICE -> {
-
-                        Toast.makeText(context, "NO SERVICE", Toast.LENGTH_SHORT).show()
-
+                        // update msg on fireBase
                         updateMsg("NO SERVICE" , "NO SERVICE")
+                        // show notification
                         showNotification(context, " NO SERVICE")
                     }
                     SmsManager.RESULT_ERROR_NULL_PDU -> {
-
-                        Toast.makeText(context, "NULL PDU", Toast.LENGTH_SHORT).show()
-
+                        // update msg on fireBase
                         updateMsg("NULL PDU" , "NO SERVICE")
+                        // show notification
                         showNotification(context, " NULL PDU")
                     }
                     SmsManager.RESULT_ERROR_RADIO_OFF -> {
-
-                        Toast.makeText(context, "RADIO OFF", Toast.LENGTH_SHORT).show()
-
+                        // update msg on fireBase
                         updateMsg("RADIO OFF" , "RADIO OFF")
+                        // show notification
                         showNotification(context, " RADIO OFF")
                     }
                 }
@@ -109,53 +97,38 @@ class SMSReceiver : BroadcastReceiver() {
 
         smsDeliveredReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, arg1: Intent) {
-                when (resultCode) {
+                when (resultCode){
                     Activity.RESULT_OK -> {
-                        Toast.makeText(context, "message delivered", Toast.LENGTH_SHORT).show()
+                        // update msg on fireBase
                         updateMsg("Completed" , "Delivered" )
-                        showNotification(context, "message delivered")
+                        // show notification
+                        showNotification(context, "Message Delivered")
                     }
                     Activity.RESULT_CANCELED -> {
-                        Toast.makeText(context, "message not delivered", Toast.LENGTH_SHORT).show()
+                        // update msg on fireBase
                         updateMsg("Not","Not Delivered")
-                        showNotification(context, "message not delivered")
+                        // show notification
+                        showNotification(context, "Message not delivered")
                     }
                 }
             }
         }
 
-        context?.applicationContext?.registerReceiver(smsSentReceiver, IntentFilter("message sent"))
-        context?.applicationContext?.registerReceiver(
-            smsDeliveredReceiver,
-            IntentFilter("message delivered")
-        )
+        context?.applicationContext?.registerReceiver(smsSentReceiver, IntentFilter("Message sent"))
+        context?.applicationContext?.registerReceiver(smsDeliveredReceiver, IntentFilter("message delivered"))
 
     }
 
-    private fun updateMsg(smsStatus: String , smsDelivered :String) {
+    private fun updateMsg(smsStatus: String, smsDelivered :String){
 
-        val message = MessageFirebase(
-            smsId, smsReceiverName, smsReceiverNumber, smsMsg, smsDate, smsTime,
-            smsStatus, smsType, userID, calendar , smsDelivered
-        )
+        val message = MessageFirebase(smsId, smsReceiverName, smsReceiverNumber, smsMsg, smsDate, smsTime,
+            smsStatus, smsType, userID, calendar , smsDelivered)
         // update msg on fireBase
         databaseReferenceMsg.child(smsId).setValue(message)
     }
 
     private fun showNotification(context: Context?, msg: String) {
-        val notificationHelper = NotificationHelper(
-            context!!,
-            smsId,
-            smsReceiverName,
-            smsReceiverNumber,
-            smsMsg,
-            smsDate,
-            smsTime,
-            smsStatus,
-            smsType,
-            userID,
-            msg
-        )
+        val notificationHelper = NotificationHelper(context!!, smsId, smsReceiverName, smsReceiverNumber, smsMsg, smsDate, smsTime, smsStatus, smsType, userID, msg)
         val nb = notificationHelper.getChannelNotification()
         notificationHelper.getManager().notify(smsId.hashCode(), nb.build())
     }

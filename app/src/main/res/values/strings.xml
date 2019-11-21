@@ -63,5 +63,11 @@
     <string name="name">Name</string>
     <string name="sorry_you_do_not_have_items">Sorry , You do not have messages</string>
     <string name="old_password">Old Password</string>
+    <string name="sorry_you_do_not_have_groups">Sorry you do not have groups</string>
+    <string name="choose_your_plan">Choose Your Plan</string>
+    <string name="current_sim">Current SIM</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="no_plan">No Plan</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

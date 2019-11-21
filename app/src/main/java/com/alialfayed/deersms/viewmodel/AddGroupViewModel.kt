@@ -29,13 +29,12 @@ class AddGroupViewModel : ViewModel {
 
     }
 
-    fun uploadGroup(group: GroupFirebase) {
-        groupsRepository!!.creatGroup(group)
+    fun uploadGroup(list : java.util.ArrayList<ContactList>, groupName: String) {
+        groupsRepository!!.insetGroup(list ,groupName )
     }
 
 
     fun getContacts(): MutableLiveData<ArrayList<ContactList>> {
-        // val contactsList = contactsRepository!!.getContactsList()
         mutableLiveData.postValue(contactsRepository!!.getContactsList(addGroupActivityRef!!))
         return mutableLiveData as MutableLiveData<ArrayList<ContactList>>
     }

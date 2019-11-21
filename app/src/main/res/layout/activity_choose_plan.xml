@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.ChoosePlanActivity"
+    android:background="@drawable/ic_backgroundhome">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/trashhandfont"
+        android:text="@string/choose_your_plan"
+        android:textColor="@color/textcolor"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_ChooseYourPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/radioBtnCurrentSIM_ChooseYourPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/current_sim"
+            android:textColor="@color/textcolor" />
+
+        <TextView
+            android:id="@+id/txtMoodCurrentSIM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="mood" />
+
+        <TextView
+            android:id="@+id/txtMoodCurrentSIM_Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="details_mood" />
+
+        <RadioButton
+            android:id="@+id/radioBtnWhatsApp_ChooseYourPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/whatsapp"
+            android:textColor="@color/textcolor" />
+
+        <TextView
+            android:id="@+id/txtMoodWhatsApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="mood" />
+
+        <TextView
+            android:id="@+id/txtMoodWhatsApp_Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="details_mood" />
+
+        <RadioButton
+            android:id="@+id/radioBtnNoPlan_ChooseYourPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_plan"
+            android:textColor="@color/textcolor" />
+
+        <TextView
+            android:id="@+id/txtMoodNoPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="mood" />
+
+        <TextView
+            android:id="@+id/txtMoodNoPlan_Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="details_mood" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConfirm_ChooseYourPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_startsolid"
+        android:text="@string/confirm"
+        android:textColor="@color/textcolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_ChooseYourPlan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

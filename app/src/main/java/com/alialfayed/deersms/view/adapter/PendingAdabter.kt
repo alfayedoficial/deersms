@@ -54,7 +54,7 @@ class PendingAdabter : RecyclerView.Adapter<PendingAdabter.ViewHolder> {
 
         val message = dataPendingAdabter[position]
 
-        holder.getTxtTime()!!.text = message.getSmsTime()
+        holder.getTxtTime()!!.text = message.getSmsDate()
         holder.getTxtDate()!!.text = message.getSmsDate()
         holder.getTxtContacts()!!.text = message.getSmsReceiverNumber()
         holder.getTxtMessage()!!.text = message.getSmsMsg()

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_backgroundhome"
-    tools:context=".view.activity.AddMessageActivity">
-
+    tools:context=".view.activity.WhatsAppActivity">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -20,12 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/imageBtnReset_WhatsAppActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="15dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/edtname_WhatsAppActivity"
+        app:layout_constraintEnd_toEndOf="@+id/edtname_WhatsAppActivity"
+        app:srcCompat="@drawable/ic_reset" />
+
     <EditText
-        android:id="@+id/edtname_AddMessage"
+        android:id="@+id/edtname_WhatsAppActivity"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:autofillHints="number"
         android:background="@drawable/btn_start"
@@ -41,10 +51,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/edtNumber_AddMessage"
+        android:id="@+id/edtNumber_WhatsAppActivity"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
@@ -65,7 +75,30 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtname_AddMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/edtname_WhatsAppActivity" />
+    <EditText
+        android:id="@+id/edtGroup_WhatsAppActivity"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="number"
+        android:background="@drawable/btn_start"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="none|phone"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/textcolor"
+        android:textColorHint="@color/textcolor"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtname_WhatsAppActivity" />
 
     <EditText
         android:id="@+id/edtGroup_AddMessage"
@@ -89,23 +122,10 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtname_AddMessage" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/trashhandfont"
-        android:text="@string/send_via"
-        android:textColor="@color/textcolor"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/edtname_WhatsAppActivity" />
 
     <EditText
-        android:id="@+id/edtMessage_AddMessage"
+        android:id="@+id/edtMessage_WhatsAppActivity"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="50dp"
@@ -131,7 +151,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageBtnSpeaker_AddMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/imageBtnSpeaker_WhatsAppActivity" />
 
     <TextView
         android:id="@+id/textView8"
@@ -143,25 +163,25 @@
         android:text="@string/time"
         android:textColor="@color/textcolor"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintStart_toStartOf="@+id/edtMessage_WhatsAppActivity"
+        app:layout_constraintTop_toBottomOf="@+id/edtMessage_WhatsAppActivity"
         tools:visibility="visible" />
 
     <RadioGroup
-        android:id="@+id/checkerButtonTime_AddMessage"
+        android:id="@+id/checkerButtonTime_WhatsAppActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:orientation="horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtMessage_WhatsAppActivity"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8"
         tools:visibility="visible">
 
         <RadioButton
-            android:id="@+id/radioBtnNow_AddMessage"
+            android:id="@+id/radioBtnNow_WhatsAppActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -174,7 +194,7 @@
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioBtnCustom_AddMessage"
+            android:id="@+id/radioBtnCustom_WhatsAppActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -187,19 +207,19 @@
     </RadioGroup>
 
     <LinearLayout
-        android:id="@+id/linearLayout_AddMessage"
+        android:id="@+id/linearLayout_WhatsAppActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtMessage_WhatsAppActivity"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8">
 
         <TextView
-            android:id="@+id/txtDate_AddMessage"
+            android:id="@+id/txtDate_WhatsAppActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -219,7 +239,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/txtTime_AddMessage"
+            android:id="@+id/txtTime_WhatsAppActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -230,62 +250,29 @@
 
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/checkerButtonVia_AddMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10">
-
-        <RadioButton
-            android:id="@+id/radioBtnWhatsApp_AddMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_whatsapp"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
-            android:paddingEnd="10dp"
-            android:paddingRight="10dp" />
-
-        <RadioButton
-            android:id="@+id/radioBtnSMS_AddMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_sms"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
-            android:paddingEnd="10dp"
-            android:paddingRight="10dp" />
-
-    </RadioGroup>
-
     <ImageButton
-        android:id="@+id/imageBtnChecker_AddMessage"
+        android:id="@+id/imageBtnChecker_WhatsAppActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/imageBtnAttach_AddMessage"
-        app:layout_constraintEnd_toEndOf="@+id/edtname_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/edtname_AddMessage"
+        app:layout_constraintBottom_toTopOf="@+id/imageBtnAttach_WhatsAppActivity"
+        app:layout_constraintEnd_toEndOf="@+id/edtname_WhatsAppActivity"
+        app:layout_constraintTop_toBottomOf="@+id/edtname_WhatsAppActivity"
         app:srcCompat="@drawable/ic_phone_book" />
 
     <ImageButton
-        android:id="@+id/imageBtnAttach_AddMessage"
+        android:id="@+id/imageBtnAttach_WhatsAppActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:background="@null"
-        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintTop_toTopOf="@+id/imageBtnSpeaker_AddMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtMessage_WhatsAppActivity"
+        app:layout_constraintTop_toTopOf="@+id/imageBtnSpeaker_WhatsAppActivity"
         app:srcCompat="@drawable/ic_attachment" />
 
     <ImageButton
-        android:id="@+id/imageBtnSend_AddMessage"
+        android:id="@+id/imageBtnSend_WhatsAppActivity"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -296,55 +283,45 @@
         android:paddingEnd="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/edtMessage_AddMessage"
-        app:layout_constraintStart_toStartOf="@+id/edtMessage_AddMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtMessage_WhatsAppActivity"
+        app:layout_constraintStart_toStartOf="@+id/edtMessage_WhatsAppActivity"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:srcCompat="@drawable/ic_sent_mail" />
 
-    <ImageButton
-        android:id="@+id/imageBtnReset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="15dp"
-        android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/checkerButtonVia_AddMessage"
-        app:layout_constraintEnd_toEndOf="@+id/checkerButtonVia_AddMessage"
-        app:srcCompat="@drawable/ic_reset" />
-
     <ImageView
-        android:id="@+id/imageBtnSpeaker_AddMessage"
+        android:id="@+id/imageBtnSpeaker_WhatsAppActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageBtnAttach_AddMessage"
-        app:layout_constraintTop_toBottomOf="@+id/edtname_AddMessage"
+        app:layout_constraintEnd_toStartOf="@+id/imageBtnAttach_WhatsAppActivity"
+        app:layout_constraintTop_toBottomOf="@+id/edtname_WhatsAppActivity"
         app:srcCompat="@drawable/ic_microphone" />
 
     <ImageButton
-        android:id="@+id/imageBtnContacts_AddMessage"
+        android:id="@+id/imageBtnContacts_WhatsAppActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@null"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/imageBtnChecker_AddMessage"
-        app:layout_constraintEnd_toEndOf="@+id/imageBtnChecker_AddMessage"
-        app:layout_constraintStart_toStartOf="@+id/imageBtnChecker_AddMessage"
+        app:layout_constraintBottom_toTopOf="@+id/imageBtnChecker_WhatsAppActivity"
+        app:layout_constraintEnd_toEndOf="@+id/imageBtnChecker_WhatsAppActivity"
+        app:layout_constraintStart_toStartOf="@+id/imageBtnChecker_WhatsAppActivity"
         app:srcCompat="@drawable/ic_phone_book" />
 
     <ImageButton
-        android:id="@+id/imageBtnGroups_AddMessage"
+        android:id="@+id/imageBtnGroups_WhatsAppActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@null"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/imageBtnContacts_AddMessage"
-        app:layout_constraintEnd_toEndOf="@+id/imageBtnContacts_AddMessage"
-        app:layout_constraintStart_toStartOf="@+id/imageBtnContacts_AddMessage"
+        app:layout_constraintBottom_toTopOf="@+id/imageBtnContacts_WhatsAppActivity"
+        app:layout_constraintEnd_toEndOf="@+id/imageBtnContacts_WhatsAppActivity"
+        app:layout_constraintStart_toStartOf="@+id/imageBtnContacts_WhatsAppActivity"
         app:srcCompat="@drawable/ic_businessmen" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

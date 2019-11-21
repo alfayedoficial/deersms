@@ -49,7 +49,6 @@ class AddGroupActivity : AppCompatActivity(), ContactListAdabter.ChnageStatusLis
         })
 
 
-        //save data on firebase
         imageBtnAdd_AddGroup.setOnClickListener {
             val groupName = edtNameGroup_AddGroup.text!!.trim().toString()
             if (!groupName.isEmpty()) {
@@ -64,14 +63,14 @@ class AddGroupActivity : AppCompatActivity(), ContactListAdabter.ChnageStatusLis
                             }
                         }
                     })
-                if (auth!!.currentUser != null) {
-                    val uid = auth!!.currentUser!!.uid
-                    var group: GroupFirebase = GroupFirebase(uid, groupName, list)
-                    addGroupViewModel.uploadGroup(group)
-                }
+                /**
+                 * inset group to firebase
+                 */
+                    addGroupViewModel.uploadGroup(list , groupName)
             }
-            val intent = Intent(this,GroupContactsActivity::class.java)
+            val intent = Intent(this,HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

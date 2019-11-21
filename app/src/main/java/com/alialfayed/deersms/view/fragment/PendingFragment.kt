@@ -54,7 +54,6 @@ class PendingFragment : Fragment() {
                        }
                     }
                     setPendingListAdabter()
-
                 }
                 if (pendingList.size <=0){
                     view.findViewById<LinearLayout>(R.id.layoutNoHaveItem_PendingFragent).visibility = View.VISIBLE

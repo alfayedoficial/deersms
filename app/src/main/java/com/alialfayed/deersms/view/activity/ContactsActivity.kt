@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alialfayed.deersms.R
 import com.alialfayed.deersms.model.Contacts
-import com.alialfayed.deersms.view.adapter.ContactsAdabter
+import com.alialfayed.deersms.view.adapter.ContactsActivityAdabter
 import kotlinx.android.synthetic.main.activity_contacts.*
 
 class ContactsActivity : AppCompatActivity() {
@@ -46,7 +46,7 @@ class ContactsActivity : AppCompatActivity() {
                 cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))))
         }
         cursor.close()
-        val adapter = ContactsAdabter(contactsList, this)
+        val adapter = ContactsActivityAdabter(contactsList, this)
         recyclerViewtest.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
         recyclerViewtest.adapter =adapter
 

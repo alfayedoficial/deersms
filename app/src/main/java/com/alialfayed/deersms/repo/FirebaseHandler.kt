@@ -32,6 +32,8 @@ class FirebaseHandler(activity: Activity) {
     lateinit var scheduleMessageViewModel: ScheduleMessageViewModel
     lateinit var addMessageViewModel: AddMessageViewModel
     internal lateinit var updateList: ArrayList<MessageFirebase>
+    lateinit var whatsAppViewModel : WhatsAppViewModel
+
 
 
     var activity: Activity? = null
@@ -96,6 +98,14 @@ class FirebaseHandler(activity: Activity) {
     constructor(activity: Activity, scheduleMessageViewModel: ScheduleMessageViewModel)
             : this( activity ) {
         this.scheduleMessageViewModel = scheduleMessageViewModel
+        mAuth = FirebaseAuth.getInstance()
+        currentUser = mAuth.currentUser
+        databaseReference = FirebaseDatabase.getInstance().getReference("Message")
+    }
+
+    constructor(activity: Activity, whatsAppViewModel: WhatsAppViewModel)
+            : this( activity ) {
+        this.whatsAppViewModel = whatsAppViewModel
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth.currentUser
         databaseReference = FirebaseDatabase.getInstance().getReference("Message")
@@ -236,24 +246,34 @@ class FirebaseHandler(activity: Activity) {
     }
 
     fun scheduleWhatsAppMessageRepository(
-        personName: String, receiverNumber: String, SMSMessage: String,
-        date: String, time: String, status: String, type: String,
-        smsDelivered: String,calendar: Long
+        personName: String, personNumber: String, whatsAppMessage: String,
+        whatsAppDate: String, whatsAppTime: String, whatsAppStatus: String, whatsAppSendVia: String,
+        whatsAppDelivered: String,calendar: Long
     ) {
 
         /**
          * create  Message Firebase
          */
         databaseReference = FirebaseDatabase.getInstance().getReference("Message")
-        val smsId: String = databaseReference.push().key.toString()
+        val whatsAppId: String = databaseReference.push().key.toString()
+        val user =  FirebaseAuth.getInstance().currentUser!!.uid
         val message = MessageFirebase(
-            smsId, personName, receiverNumber, SMSMessage, date, time, status, type,
-            FirebaseAuth.getInstance().currentUser!!.uid, calendar, smsDelivered
+            whatsAppId, personName, personNumber, whatsAppMessage, whatsAppDate, whatsAppTime, whatsAppStatus, whatsAppSendVia,
+            user , calendar, whatsAppDelivered
         )
         /**
          * insert Message Firebase
          */
-        databaseReference.child(smsId).setValue(message)
+        databaseReference.child(whatsAppId).setValue(message)
+        /**
+         * set Alarm Message
+         */
+        whatsAppViewModel.setWhatsAppAlarm(
+            message.getSmsId(), message.getSmsReceiverName(),
+            message.getSmsReceiverNumber(), message.getSmsMsg(), message.getSmsDate(),
+            message.getSmsTime(), message.getSmsStatus(), message.getSmsType(), message.getUserID(),
+            message.getSmsCalender(), message.getSmsDelivered()
+        )
 
     }
 

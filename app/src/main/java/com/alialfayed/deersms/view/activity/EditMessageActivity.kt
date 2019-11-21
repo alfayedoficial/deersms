@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.alialfayed.deersms.R
 
-class GroupNameActivity : AppCompatActivity() {
+class EditMessageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_group_name)
+        setContentView(R.layout.activity_edit_message)
 
 //        initComponent()
 

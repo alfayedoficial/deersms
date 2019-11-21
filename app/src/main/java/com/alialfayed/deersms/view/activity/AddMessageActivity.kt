@@ -28,8 +28,8 @@ import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddMessageActivity : AppCompatActivity() {
 
     private lateinit var addMessageViewModel: AddMessageViewModel
@@ -62,11 +62,7 @@ class AddMessageActivity : AppCompatActivity() {
     private lateinit var radioGroup_SendVia: RadioGroup
     private lateinit var checkerButtonTime: RadioGroup
     private val REQ_CODE = 100
-
-
-//    private lateinit var saveResultMessage:String
-//    private lateinit var saveResultPhone:String
-//    var contactList = ArrayList<Contacts>()
+    private var groupChecker: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,16 +87,9 @@ class AddMessageActivity : AppCompatActivity() {
                 }
                 R.id.radioBtnSMS_AddMessage -> {
                     checkerButtonSend = true
-                    if(checkerButtonTime_AddMessage.visibility.equals(View.GONE) || textView8.visibility.equals(View.GONE)){
-                        checkerButtonTime_AddMessage.setVisibility(View.VISIBLE)
-                        textView8.setVisibility(View.VISIBLE)
-                        linearLayout_AddMessage.setVisibility(View.GONE)
-
-                    }else{
-                        checkerButtonTime_AddMessage.setVisibility(View.GONE)
-                        textView8.setVisibility(View.GONE)
-                        linearLayout_AddMessage.setVisibility(View.GONE)
-                    }
+                    checkerButtonTime_AddMessage.setVisibility(View.VISIBLE)
+                    textView8.setVisibility(View.VISIBLE)
+                    linearLayout_AddMessage.setVisibility(View.GONE)
 
                 }
             }
@@ -140,9 +129,6 @@ class AddMessageActivity : AppCompatActivity() {
             }
         }
 
-
-
-
         timesender()
         calender = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             var month = month
@@ -180,42 +166,83 @@ class AddMessageActivity : AppCompatActivity() {
             }
         }
 
+        var phoneGroup = ArrayList<String>()
         if (intent.getStringExtra("phoneContact") != null || intent.getStringExtra("nameContact") != null) {
-            var textName: String = intent.getStringExtra("nameContact")
+            val textName: String = intent.getStringExtra("nameContact")
             edtname_AddMessage.setText(textName)
-            var textPhone: String = intent.getStringExtra("phoneContact")
+            val textPhone: String = intent.getStringExtra("phoneContact")
             edtNumber_AddMessage.setText(textPhone)
             if (intent.getStringExtra("Template") == null) {
-                var textTemplate: String = getText(R.string.type_your_message).toString()
+                val textTemplate: String = getText(R.string.type_your_message).toString()
                 edtMessage_AddMessage.setHint(textTemplate)
             } else {
-                var textTemplate: String = intent.getStringExtra("Template")
+                val textTemplate: String = intent.getStringExtra("Template")
                 edtMessage_AddMessage.setText(textTemplate)
             }
         }
         if (intent.getStringExtra("Template") != null) {
-            var textName: String = intent.getStringExtra("Template")
+            val textName: String = intent.getStringExtra("Template")
             edtMessage_AddMessage.setText(textName)
             if (intent.getStringExtra("TPhone") != null && intent.getStringExtra("TName") != null) {
+                val textName: String = intent.getStringExtra("TName")
+                edtname_AddMessage.setText(textName)
+                val textPhone: String = intent.getStringExtra("TPhone")
+                edtNumber_AddMessage.setText(textPhone)
+            } else if (intent.getStringExtra("TPhone") != null) {
+                val textPhone: String = intent.getStringExtra("TPhone")
+                edtNumber_AddMessage.setText(textPhone)
+            } else if (intent.getStringExtra("TName") != null) {
                 var textName: String = intent.getStringExtra("TName")
                 edtname_AddMessage.setText(textName)
-                var textPhone: String = intent.getStringExtra("TPhone")
-                edtNumber_AddMessage.setText(textPhone)
-            } else if (intent.getStringExtra("TPhone") != null){
-                var textPhone: String = intent.getStringExtra("TPhone")
-                edtNumber_AddMessage.setText(textPhone)
-            }else if ( intent.getStringExtra("TName") != null){
-                var textName: String = intent.getStringExtra("TName")
-                edtname_AddMessage.setText(textName)
-            }else {
-                var textName: String = getText(R.string.name).toString()
+            } else {
+                val textName: String = getText(R.string.name).toString()
                 edtname_AddMessage.setHint(textName)
-                var textPhone: String = getText(R.string.choose_number).toString()
+                val textPhone: String = getText(R.string.choose_number).toString()
                 edtNumber_AddMessage.setHint(textPhone)
             }
         }
+        if (intent.getStringArrayListExtra("phoneGroup") != null || intent.getStringExtra("nameGroup") != null) {
+            edtNumber_AddMessage.setVisibility(View.GONE)
+            edtGroup_AddMessage.setVisibility(View.VISIBLE)
+            phoneGroup = intent.getStringArrayListExtra("phoneGroup")
+            val nameGroup = intent.getStringExtra("nameGroup")
+            edtname_AddMessage.setText(nameGroup)
+            edtGroup_AddMessage.setText(phoneGroup.toString())
+            edtname_AddMessage.setEnabled(false)
+            groupChecker = true
+//            Toast.makeText(this,number, Toast.LENGTH_SHORT).show()
 
 
+        }
+
+
+        /**
+         * button get contacts
+         */
+        imageBtnContacts_AddMessage.setOnClickListener {
+            addMessageViewModel.getContacts()
+            addMessageViewModel.checker()
+            edtNumber_AddMessage.setVisibility(View.VISIBLE)
+            edtNumber_AddMessage.setText("")
+            edtname_AddMessage.setText("")
+            edtname_AddMessage.setEnabled(true)
+            edtGroup_AddMessage.setVisibility(View.GONE)
+            groupChecker = false
+
+        }
+        /**
+         * button get Groups
+         */
+        imageBtnGroups_AddMessage.setOnClickListener {
+            addMessageViewModel.getGroup()
+            addMessageViewModel.checker()
+            edtNumber_AddMessage.setVisibility(View.GONE)
+            edtGroup_AddMessage.setVisibility(View.VISIBLE)
+            edtGroup_AddMessage.setText("")
+            edtname_AddMessage.setText("")
+
+
+        }
         /**
          * button do send Message
          */
@@ -254,16 +281,61 @@ class AddMessageActivity : AppCompatActivity() {
                         calendarAlarm = Calendar.getInstance()
                         currentDate = DateFormat.getDateInstance().format(calendarAlarm.time)
                         currentTime = DateFormat.getTimeInstance().format(calendarAlarm.time)
-                        addNowMessageActivity(currentDate, currentTime, sendVia)
-                        Log.i("Date now", currentDate + currentTime)
-                        isSendNow = false
-                        finishNowSend()
+                        if (!groupChecker) {
+//                             if groupChecker = false
+                            addNowMessageActivity(currentDate, currentTime, sendVia)
+                            Log.i("Date now", currentDate + currentTime)
+                            isSendNow = false
+                            finishNowSend()
+                        } else {
+//                            if groupChecker = true
+                            if (intent.getStringExtra("nameGroup") != null) {
+                                for (i in phoneGroup!!.indices) {
+                                    if (phoneGroup.size >= 0) {
+                                        addNowGroupMessageActivity(
+                                            phoneGroup[i],
+                                            currentDate,
+                                            currentTime,
+                                            sendVia
+                                        )
+                                    }
+                                }
+                                finishNowSend()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Sorry no not have Group of Contacts",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+//                            Toast.makeText(this,"Sorry no not have Group of Contacts",Toast.LENGTH_SHORT).show()
+                        }
                     } else {
 //                     if isSendNow = false
-                        sendVia = "SMS"
-                        addScheduleMessageActivity(sendVia)
-                        isSendNow = true
-                        finishScheduleSend()
+                        if (!groupChecker) {
+//                             if groupChecker = false
+                            sendVia = "SMS"
+                            addScheduleMessageActivity(sendVia)
+                            isSendNow = true
+                            finishScheduleSend()
+                        } else {
+//                            if groupChecker = true
+                            if (intent.getStringExtra("nameGroup") != null) {
+                                for (i in phoneGroup!!.indices) {
+                                    if (phoneGroup.size >= 0) {
+                                        addScheduleGroupMessageActivity(phoneGroup[i], sendVia)
+                                    }
+                                }
+                                finishNowSend()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Sorry no not have Group of Contacts",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
                     }
                     checkerButtonSend = false
                 }
@@ -272,10 +344,10 @@ class AddMessageActivity : AppCompatActivity() {
 
         }
         /**
-         * button get contacts
+         * button check group or contacts
          */
-        imageBtnContacts_AddMessage.setOnClickListener {
-            addMessageViewModel.contacts()
+        imageBtnChecker_AddMessage.setOnClickListener {
+            addMessageViewModel.checker()
         }
         /**
          * button get template Message
@@ -289,7 +361,6 @@ class AddMessageActivity : AppCompatActivity() {
         imageBtnReset.setOnClickListener {
             addMessageViewModel.resetActivity()
         }
-
 
     }
 
@@ -413,23 +484,28 @@ class AddMessageActivity : AppCompatActivity() {
     fun addScheduleMessageActivity(sendVia: String) {
         val phoneText = edtNumber_AddMessage.text.toString().trim()
         val messageText = edtMessage_AddMessage.text.toString().trim()
-        val nameText = edtname_AddMessage.text.toString().trim()
         val date = txtDate_AddMessage.text.toString().trim()
         val time = txtTime_AddMessage.text.toString().trim()
+        val nameText = edtname_AddMessage.text.toString().trim()
 
 
-        if (!phoneText.isEmpty()) {
+
+        if (phoneText.isEmpty()) {
             edtNumber_AddMessage.error = "Phone Number mustn't be empty"
             edtNumber_AddMessage.requestFocus()
             return
-        } else if (!messageText.isEmpty()) {
+        } else if (nameText.isEmpty()) {
+            edtname_AddMessage.error = "Name mustn't be empty!"
+            edtname_AddMessage.requestFocus()
+            return
+        } else if (messageText.isEmpty()) {
             edtMessage_AddMessage.error = "Message mustn't be empty!"
             edtMessage_AddMessage.requestFocus()
             return
-        } else if (!txtDate_AddMessage.text.toString().trim().isEmpty()) {
+        } else if (txtDate_AddMessage.text.toString().trim().isEmpty()) {
             Toast.makeText(this, "Enter a valid Date!", Toast.LENGTH_SHORT).show()
             return
-        } else if (!txtTime_AddMessage.text.toString().trim().isEmpty()) {
+        } else if (txtTime_AddMessage.text.toString().trim().isEmpty()) {
             Toast.makeText(this, "Enter a valid Time!", Toast.LENGTH_SHORT).show()
             return
         } else {
@@ -444,7 +520,7 @@ class AddMessageActivity : AppCompatActivity() {
                 sendVia,
                 calendarAlarm.timeInMillis, "Sent"
             )
-            Toast.makeText(this, "SMS Send at " + date + time, Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "SMS Send at " + date + time, Toast.LENGTH_LONG).show()
 
         }
 
@@ -453,26 +529,83 @@ class AddMessageActivity : AppCompatActivity() {
     fun addNowMessageActivity(date: String, time: String, sendVia: String) {
         val phoneText = edtNumber_AddMessage.text.toString().trim()
         val messageText = edtMessage_AddMessage.text.toString().trim()
+        val nameText = edtname_AddMessage.text.toString().trim()
 
-        if (phoneText.isEmpty() || messageText.isBlank()) {
+
+        if (phoneText.isEmpty()) {
             edtNumber_AddMessage.error = "Phone Number mustn't be empty"
             edtNumber_AddMessage.requestFocus()
             return
-        } else if (messageText.isEmpty() || messageText.isBlank()) {
+        } else if (nameText.isEmpty()) {
+            edtname_AddMessage.error = "Name mustn't be empty!"
+            edtname_AddMessage.requestFocus()
+            return
+        } else if (messageText.isEmpty()) {
             edtMessage_AddMessage.error = "Message mustn't be empty!"
             edtMessage_AddMessage.requestFocus()
             return
         } else {
-            Toast.makeText(
-                this,
-                "SMS Send at " + currentDate + currentTime + "By SMS ",
-                Toast.LENGTH_LONG
-            )
-                .show()
+//            Toast.makeText(
+//                this,
+//                "SMS Send at " + currentDate + currentTime + "By SMS ",
+//                Toast.LENGTH_LONG
+//            )
+//                .show()
 
             addMessageViewModel.scheduleMessageViewModel(
                 edtname_AddMessage.text.toString(),
                 edtNumber_AddMessage.text.toString(), edtMessage_AddMessage.text.toString(),
+                date, time, "Completed", sendVia,
+                calendarAlarm.timeInMillis, "Sent"
+            )
+        }
+
+    }
+
+    fun addScheduleGroupMessageActivity(number: String, sendVia: String) {
+        val messageText = edtname_AddMessage.text.toString().trim()
+        val nameText = edtname_AddMessage.text.toString().trim()
+
+        if (nameText.isEmpty()) {
+            edtname_AddMessage.error = "Name mustn't be empty!"
+            edtname_AddMessage.requestFocus()
+            return
+        } else if (messageText.isEmpty()) {
+            edtMessage_AddMessage.error = "Message mustn't be empty!"
+            edtMessage_AddMessage.requestFocus()
+            return
+        } else {
+            addMessageViewModel.scheduleMessageViewModel(
+                edtname_AddMessage.text.toString(),
+                number,
+                edtMessage_AddMessage.text.toString(),
+                txtDate_AddMessage.text.toString(),
+                txtTime_AddMessage.text.toString(),
+                "Pending",
+                sendVia,
+                calendarAlarm.timeInMillis, "Sent"
+            )
+//            Toast.makeText(this, "SMS Send at " + date + time, Toast.LENGTH_LONG).show()
+
+        }
+
+    }
+
+    fun addNowGroupMessageActivity(number: String, date: String, time: String, sendVia: String) {
+        val nameText = edtname_AddMessage.text.toString().trim()
+        val messageText = edtname_AddMessage.text.toString().trim()
+        if (nameText.isEmpty()) {
+            edtname_AddMessage.error = "Name mustn't be empty!"
+            edtname_AddMessage.requestFocus()
+            return
+        } else if (messageText.isEmpty()) {
+            edtMessage_AddMessage.error = "Message mustn't be empty!"
+            edtMessage_AddMessage.requestFocus()
+            return
+        } else {
+            addMessageViewModel.scheduleMessageViewModel(
+                edtname_AddMessage.text.toString(),
+                number, edtMessage_AddMessage.text.toString(),
                 date, time, "Completed", sendVia,
                 calendarAlarm.timeInMillis, "Sent"
             )
@@ -514,13 +647,6 @@ class AddMessageActivity : AppCompatActivity() {
         } else {
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendarAlarm.timeInMillis, pendingIntent)
         }
-
-        Toast.makeText(
-            this@AddMessageActivity,
-            "Message scheduled successfully!",
-            Toast.LENGTH_SHORT
-        ).show()
-        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -539,17 +665,18 @@ class AddMessageActivity : AppCompatActivity() {
         }
     }
 
-    fun finishNowSend(){
+    fun finishNowSend() {
         val phone = edtNumber_AddMessage.text.toString().trim()
         val message = edtMessage_AddMessage.text.toString().trim()
         val name = edtname_AddMessage.text.toString().trim()
         if (phone.isEmpty() || message.isEmpty() || name.isEmpty()) {
             Toast.makeText(this, "Please Check Your Fields ", Toast.LENGTH_SHORT).show()
-        }else{
-            startActivity(Intent(this,HomeActivity::class.java))
+        } else {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
     }
-    fun finishScheduleSend(){
+
+    fun finishScheduleSend() {
         val phone = edtNumber_AddMessage.text.toString().trim()
         val message = edtMessage_AddMessage.text.toString().trim()
         val name = edtname_AddMessage.text.toString().trim()
@@ -557,8 +684,8 @@ class AddMessageActivity : AppCompatActivity() {
         val time = txtTime_AddMessage.text.toString().trim()
         if (phone.isEmpty() || message.isEmpty() || name.isEmpty() || date.isEmpty() || time.isEmpty()) {
             Toast.makeText(this, "Please Check Your Fields ", Toast.LENGTH_SHORT).show()
-        }else{
-            startActivity(Intent(this,HomeActivity::class.java))
+        } else {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
     }
 

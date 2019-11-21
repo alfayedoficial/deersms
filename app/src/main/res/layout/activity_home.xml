@@ -73,30 +73,71 @@
         <!--            android:clickable="true"-->
         <!--            android:src="@android:drawable/ic_dialog_email"-->
         <!--            app:srcCompat="@color/colorAccent" />-->
-        <com.emredavarci.floatingactionmenu.FloatingActionMenu
-            xmlns:fam="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/floatingMenu"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="40dp"
-            fam:bgColor="@color/colorAccent"
-            fam:duration="200"
-            fam:menuIconHeight="30dp"
-            fam:menuIconRotateAngle="225"
-            fam:menuIconWidth="30dp"
-            fam:radius="80dp"
-            fam:scaleRatio="3"
-            fam:shadowWidth="2dp"
-            fam:menuIcon="@drawable/ic_menu"
-            fam:firstActionIcon="@drawable/ic_email"
-            fam:secondActionIcon="@drawable/ic_add_group"
-            fam:thirdActionIcon="@drawable/ic_phone_book_white"
-            fam:fourthActionIcon="@drawable/settings_icon"
-            />
-    </FrameLayout>
 
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/linearlayoutolid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageBtnAddMessage"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_email" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.02"
+            android:background="@color/textcolor" />
+
+        <ImageButton
+            android:id="@+id/imageBtnAddGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_add_group" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.02"
+            android:background="@color/textcolor" />
+
+        <ImageButton
+            android:id="@+id/imageBtnGroupContacts"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_phone_book_white" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.02"
+            android:background="@color/textcolor" />
+
+        <ImageButton
+            android:id="@+id/imageBtnSettings"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_settings_black_24dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

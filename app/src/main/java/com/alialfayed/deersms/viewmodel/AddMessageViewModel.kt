@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import com.alialfayed.deersms.repo.FirebaseHandler
 import com.alialfayed.deersms.view.activity.AddMessageActivity
 import com.alialfayed.deersms.view.activity.ContactsActivity
+import com.alialfayed.deersms.view.activity.GroupContactsActivity
 import com.alialfayed.deersms.view.activity.TemplatesActivity
 import kotlinx.android.synthetic.main.activity_add_message.*
 import java.util.*
@@ -24,6 +25,8 @@ class AddMessageViewModel : ViewModel() {
 
     lateinit var addMessageActivity: AddMessageActivity
     lateinit var firebaseHandler: FirebaseHandler
+    private var checkerContactorGroups : Boolean = true
+
 
     fun setAddMessage(activity: Activity) {
         this.addMessageActivity = activity as AddMessageActivity
@@ -43,10 +46,16 @@ class AddMessageViewModel : ViewModel() {
         Toast.makeText(addMessageActivity, "Sms sent", Toast.LENGTH_SHORT).show()
     }
 
-    fun contacts() {
+    fun getContacts() {
         val intent = Intent(addMessageActivity, ContactsActivity::class.java)
         addMessageActivity.startActivity(intent)
     }
+
+    fun getGroup(){
+        val intent = Intent(addMessageActivity, GroupContactsActivity::class.java)
+        addMessageActivity.startActivity(intent)
+    }
+
 
     fun template() {
         val phone = addMessageActivity.edtNumber_AddMessage.text.toString()
@@ -123,4 +132,16 @@ fun scheduleMessageViewModel(
         status, type, calendar, smsDelivered
     )
 }
+
+    fun checker() {
+        if (checkerContactorGroups){
+            addMessageActivity.imageBtnContacts_AddMessage.setVisibility(View.VISIBLE)
+            addMessageActivity.imageBtnGroups_AddMessage.setVisibility(View.VISIBLE)
+            checkerContactorGroups = false
+        }else{
+            addMessageActivity.imageBtnContacts_AddMessage.setVisibility(View.GONE)
+            addMessageActivity.imageBtnGroups_AddMessage.setVisibility(View.GONE)
+            checkerContactorGroups = true
+        }
+    }
 }
